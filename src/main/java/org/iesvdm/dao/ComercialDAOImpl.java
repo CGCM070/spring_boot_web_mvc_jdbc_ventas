@@ -18,9 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 //Utilizo lombok para generar el constructor
 @AllArgsConstructor
 public class ComercialDAOImpl implements ComercialDAO {
-
-	//JdbcTemplate se inyecta por el constructor de la clase automáticamente
-	//
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
