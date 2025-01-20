@@ -24,7 +24,7 @@ public class ClienteController {
 		List<Cliente> listaClientes =  clienteService.listAll();
 		model.addAttribute("listaClientes", listaClientes);
 				
-		return "clientes";
+		return "/clientes/clientes";
 
 	}
 
@@ -35,7 +35,7 @@ public class ClienteController {
 
 		model.addAttribute("cliente", cliente);
 
-		return "crear-clientes";
+		return "/clientes/crear-clientes";
 	}
 
 
@@ -46,6 +46,25 @@ public class ClienteController {
 		clienteService.newCliente(cliente);
 
 		return new RedirectView("/clientes") ;
+
+	}
+
+
+	@GetMapping("/clientes/editar/{id}")
+	public String editar (Model model , @PathVariable Integer id) {
+
+		Cliente cliente = clienteService.findById(id);
+
+		model.addAttribute("cliente", cliente);
+
+		return "/clientes/editar-clientes";
+	}
+
+	@PostMapping("/clientes/editar/{id}")
+	public RedirectView editarSubmit(@ModelAttribute("cliente") Cliente cliente) {
+		clienteService.replaceCliente(cliente);
+
+		return new RedirectView("/clientes");
 
 	}
 
