@@ -28,7 +28,7 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 		log.info("*******************************");
 		log.info("*Prueba de arranque ClienteDAO*");
 		log.info("*******************************");
-		
+		/*
 		clienteDAO.getAll().forEach(c -> log.info("Cliente: {}", c));
 		
 		int id = 1;
@@ -71,7 +71,7 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 		log.info("************************************");
 		log.info("*FIN: Prueba de arranque ClienteDAO*");
 		log.info("************************************");
-		
+		*/
 	}
 
 }

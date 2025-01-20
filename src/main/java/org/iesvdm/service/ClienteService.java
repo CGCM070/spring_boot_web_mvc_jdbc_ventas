@@ -21,9 +21,6 @@ public class ClienteService {
 	@Autowired
 	PedidoDAOImpl pedidoDAO;
 
-	@Autowired
-	ComercialDAO comercialDAO;
-
 	public List<Cliente> listAll() {
 		
 		return clienteDAO.getAll();
@@ -46,18 +43,11 @@ public class ClienteService {
 	}
 
 	public void deleteCliente (int id) {
-
-		List<Comercial>listComercial = comercialDAO.getAllComercialById(id);
-		List<Pedido> listaPedido = pedidoDAO.getAllPedidoCliId(id);
-
-		for (Comercial comercial :listComercial ){
-			comercialDAO.delete(comercial.getId());
-		}
-
+		List<Pedido> listaPedido = pedidoDAO.getAllPedidoByCliId(id);
+		
 		for (Pedido pedido :listaPedido ){
 			pedidoDAO.delete(pedido.getId());
 		}
-
 
 		clienteDAO.delete(id);
 	}

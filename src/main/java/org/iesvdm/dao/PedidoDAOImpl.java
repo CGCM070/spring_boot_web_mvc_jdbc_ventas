@@ -99,13 +99,14 @@ public class PedidoDAOImpl implements PedidoDAO {
 
     @Override
     public void delete(long id) {
-
+        int rows = jdbcTemplate.update("DELETE FROM pedido WHERE id = ?", id);
+        log.info("Delete de Comercial con {} registros eliminados.", rows);
     }
 
     @Override
-    public List<Pedido> getAllPedidoCliId(int id) {
+    public List<Pedido> getAllPedidoByCliId(int id) {
 
-        List<Pedido> listPedido = jdbcTemplate.query("SELECT * FROM pedido WHERE id = ? ",
+        List<Pedido> listPedido = jdbcTemplate.query("SELECT * FROM pedido WHERE id_cliente = ? ",
                 (rs, rowNum) ->
                         new Pedido(
                                 rs.getInt("id"),

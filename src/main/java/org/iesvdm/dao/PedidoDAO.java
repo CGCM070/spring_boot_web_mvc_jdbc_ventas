@@ -18,5 +18,5 @@ public interface PedidoDAO {
 
     public void delete(long id);
 
-    public List<Pedido> getAllPedidoCliId(int id);
+    public List<Pedido> getAllPedidoByCliId(int id);
 }
