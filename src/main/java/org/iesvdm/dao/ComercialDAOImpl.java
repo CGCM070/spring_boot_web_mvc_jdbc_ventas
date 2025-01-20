@@ -111,4 +111,5 @@ public class ComercialDAOImpl implements ComercialDAO {
 
         log.info("Delete de Comercial con {} registros eliminados.", rows);
     }
+
 }

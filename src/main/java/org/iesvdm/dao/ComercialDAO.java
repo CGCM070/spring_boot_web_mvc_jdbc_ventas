@@ -18,5 +18,4 @@ public interface ComercialDAO {
 	public void delete(long id);
 
 
-
 }

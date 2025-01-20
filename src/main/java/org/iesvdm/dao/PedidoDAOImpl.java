@@ -99,12 +99,14 @@ public class PedidoDAOImpl implements PedidoDAO {
 
     @Override
     public void delete(long id) {
+
         int rows = jdbcTemplate.update("DELETE FROM pedido WHERE id = ?", id);
-        log.info("Delete de Comercial con {} registros eliminados.", rows);
+
+        log.info("Delete de Pedido con {} registros eliminados.", rows);
     }
 
     @Override
-    public List<Pedido> getAllPedidoByCliId(int id) {
+    public List<Pedido> getAllPedidoByCliId(int id_cliente) {
 
         List<Pedido> listPedido = jdbcTemplate.query("SELECT * FROM pedido WHERE id_cliente = ? ",
                 (rs, rowNum) ->
@@ -114,7 +116,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                                 rs.getDate("fecha"),
                                 rs.getInt("id_cliente"),
                                 rs.getInt("id_comercial")
-                        ), id
+                        ), id_cliente
         );
 
         return listPedido;
