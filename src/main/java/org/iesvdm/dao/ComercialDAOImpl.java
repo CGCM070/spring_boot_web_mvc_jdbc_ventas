@@ -12,17 +12,17 @@ import org.springframework.stereotype.Repository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-//Anotación lombok para logging (traza) de la aplicación
 @Slf4j
 @Repository
-//Utilizo lombok para generar el constructor
 @AllArgsConstructor
 public class ComercialDAOImpl implements ComercialDAO {
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
 	public void create(Comercial cliente) {
-		// TODO Auto-generated method stub
+
 
 	}
 
