@@ -1,6 +1,8 @@
 package org.iesvdm.service;
 
+import org.iesvdm.dao.ClienteDAO;
 import org.iesvdm.dao.ComercialDAO;
+import org.iesvdm.dao.PedidoDAOImpl;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,7 @@ public class ComercialService {
 
     public void deleteComercial(int id) {
         //ver las agergaciones en las tablas
+
         comercialDAO.delete(id);
     }
 }

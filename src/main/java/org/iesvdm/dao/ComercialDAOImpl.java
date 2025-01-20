@@ -112,4 +112,22 @@ public class ComercialDAOImpl implements ComercialDAO {
         log.info("Delete de Comercial con {} registros eliminados.", rows);
     }
 
+    @Override
+    public List<Comercial> getAllComercialById(int id) {
+
+        List<Comercial> listComercial = jdbcTemplate.query("SELECT * FROM comercial WHERE id = ? ",
+                (rs, rowNum) ->
+                        new Comercial(
+                                rs.getInt("id"),
+                                rs.getString("nombre"),
+                                rs.getString("apellido1"),
+                                rs.getString("apellido2"),
+                                rs.getFloat("comisión")
+                        ), id
+        );
+
+        return listComercial;
+    }
+
+
 }

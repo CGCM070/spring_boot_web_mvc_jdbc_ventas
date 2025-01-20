@@ -69,6 +69,14 @@ public class ClienteController {
 	}
 
 
+	@PostMapping("/clientes/borrar/{id}")
+	public RedirectView submitBorrar ( @PathVariable Integer id) {
+
+		clienteService.deleteCliente(id);
+
+		return new RedirectView("/clientes") ;
+	}
+
 
 
 
