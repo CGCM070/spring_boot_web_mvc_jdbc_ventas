@@ -21,5 +21,8 @@ public interface PedidoDAO {
 
     public List<Pedido> getAllPedidoByCliId(int id_cliente);
 
+    public List<Pedido> getAllByComId(int id_comercial);
+
     public List<PedidoDTO> getPedidoByClienteId (int id_cliente);
+
 }

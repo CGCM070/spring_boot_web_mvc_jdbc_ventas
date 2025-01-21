@@ -2,7 +2,9 @@ package org.iesvdm.service;
 
 
 import org.iesvdm.dao.ComercialDAO;
+import org.iesvdm.dao.PedidoDAO;
 import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class ComercialService {
 
     @Autowired
     ComercialDAO comercialDAO;
+
+    @Autowired
+    PedidoDAO pedidoDAO;
 
 
     public List<Comercial> listAll() {
@@ -39,6 +44,10 @@ public class ComercialService {
 
     public void deleteComercial(int id) {
         //ver las agergaciones en las tablas
+        List<Pedido> listaPedidos = pedidoDAO.getAllByComId(id);
+        for (Pedido pedido :listaPedidos ){
+            pedidoDAO.delete(pedido.getId());
+        }
 
         comercialDAO.delete(id);
     }

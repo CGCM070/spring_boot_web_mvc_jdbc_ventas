@@ -89,16 +89,17 @@ public class ComercialDAOImpl implements ComercialDAO {
     public void update(Comercial comercial) {
 
         int rows = jdbcTemplate.update("""
-										UPDATE comercial SET 
-														nombre = ?, 
-														apellido1 = ?, 
-														apellido2 = ?,
-														comisión = ?,  
-												WHERE id = ?
-										""", comercial.getNombre()
+                        UPDATE comercial SET 
+                        				nombre = ?, 
+                        				apellido1 = ?, 
+                        				apellido2 = ?,
+                        				comisión = ? 
+                        		WHERE id = ?
+                        """
+                , comercial.getNombre()
                 , comercial.getApellido1()
                 , comercial.getApellido2()
-                ,comercial.getComision()
+                , comercial.getComision()
                 , comercial.getId());
 
         log.info("Update de Comercial con {} registros actualizados.", rows);

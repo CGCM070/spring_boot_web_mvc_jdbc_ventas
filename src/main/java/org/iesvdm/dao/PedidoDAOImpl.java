@@ -140,6 +140,25 @@ public class PedidoDAOImpl implements PedidoDAO {
     }
 
     @Override
+    public List<Pedido> getAllByComId(int id_comercial) {
+
+        List<Pedido> listaPedidoCom = jdbcTemplate.query("SELECT * FROM pedido WHERE id_comercial = ? ",
+                (rs, rowNum) ->
+                        new Pedido(
+                                rs.getInt("id"),
+                                rs.getDouble("total"),
+                                rs.getDate("fecha"),
+                                rs.getInt("id_cliente"),
+                                rs.getInt("id_comercial")
+                        ), id_comercial
+        );
+        return listaPedidoCom;
+    }
+
+
+
+    //PARA MI DTO , SOLO CIERTOS VALORES
+    @Override
     public List<PedidoDTO> getPedidoByClienteId(int id_cliente) {
 
         List<PedidoDTO> listPedidoDTO = jdbcTemplate.query(
