@@ -61,7 +61,7 @@ public class ClienteController {
         }else {
             model.addAttribute("error", "Cliente no econtrado");
         }
-        return "detalle-clientes";
+        return "/clientes/detalle-clientes";
     }
 
 
