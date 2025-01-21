@@ -2,6 +2,7 @@ package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -95,6 +96,21 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public void update(Pedido pedido) {
 
+        int rows = jdbcTemplate.update("""
+										UPDATE pedido SET 
+														total = ?, 
+														fecha = ?, 
+														id_cliente = ?,
+														id_comercial = ?,  
+												WHERE id = ?
+										""", pedido.getTotal()
+                , pedido.getFecha()
+                , pedido.getId_cliente()
+                ,pedido.getId_comercial()
+                , pedido.getId());
+
+        log.info("Update de Pedido con {} registros actualizados.", rows);
+
     }
 
     @Override
@@ -120,6 +136,25 @@ public class PedidoDAOImpl implements PedidoDAO {
         );
 
         return listPedido;
+
+    }
+
+    @Override
+    public List<PedidoDTO> getPedidoByClienteId(int id_cliente) {
+
+        List<PedidoDTO> listPedidoDTO = jdbcTemplate.query(
+                "SELECT * FROM pedido WHERE  id_cliente = ?",
+                (rs, rowNum) -> new PedidoDTO(
+                        rs.getInt("id"),
+                        rs.getDate("fecha"),
+                        rs.getDouble("total")
+                ), id_cliente
+
+        );
+
+        log.info("Devueltos {} registros para el cliente con id {}.", listPedidoDTO.size() , id_cliente);
+
+        return listPedidoDTO;
 
     }
 }

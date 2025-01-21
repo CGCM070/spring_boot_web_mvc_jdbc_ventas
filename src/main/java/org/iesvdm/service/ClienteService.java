@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.iesvdm.dao.ClienteDAO;
 
 import org.iesvdm.dao.PedidoDAOImpl;
+import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 
 import org.iesvdm.modelo.Pedido;
@@ -54,6 +56,35 @@ public class ClienteService {
 		}
 
 		clienteDAO.delete(id);
+	}
+
+	public  Optional<ClienteDTO> obtenerDatosCliente (int id) {
+
+		//busco al cliente
+		Optional<Cliente>clienteOptional = clienteDAO.find(id);
+
+		//si existe cogemos los datos
+		if (clienteOptional.isPresent()){
+			Cliente cliente = clienteOptional.get();
+			// busco sus pedidos
+			List<PedidoDTO> pedidosDTO = pedidoDAO.getPedidoByClienteId(id);
+
+			//construyo mi dto
+
+			ClienteDTO clienteDetalle = ClienteDTO.builder()
+					.id(cliente.getId())
+					.nombre(cliente.getNombre())
+					.apellido1(cliente.getApellido1())
+					.ciudad(cliente.getCiudad())
+					.pedidos(pedidosDTO)
+					.build();
+
+
+			return Optional.of(clienteDetalle);
+		}
+
+		// y si no existe vacio
+		return Optional.empty();
 	}
 
 }

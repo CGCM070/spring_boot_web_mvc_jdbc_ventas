@@ -1,5 +1,6 @@
 package org.iesvdm.dao;
 
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 
@@ -19,4 +20,6 @@ public interface PedidoDAO {
     public void delete(long id);
 
     public List<Pedido> getAllPedidoByCliId(int id_cliente);
+
+    public List<PedidoDTO> getPedidoByClienteId (int id_cliente);
 }

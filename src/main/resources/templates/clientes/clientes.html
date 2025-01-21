@@ -39,11 +39,11 @@
         <span class="col text-center" th:text="${cliente.categoria}">categoría</span>
         <span class="col">
         <div class="btn-group d-flex justify-content-around" role="group">
-            <form class="d-inline" th:action="@{/clientes/__${cliente.id}__}">
+        <form class="d-inline" th:action="@{/clientes/detalles/{id}(id=${cliente.id})}">
                 <button type="submit" class="btn btn-info btn-sm">Detalle</button>
             </form>
-            <form class="d-inline" th:action="@{/clientes/editar/}+${cliente.id}">
-                <button type="submit" class="btn btn-success btn-sm">Editar</button> <!-- Color verde para editar -->
+            <form class="d-inline" th:action="@{/clientes/editar/__${cliente.id}__}">
+                <button type="submit" class="btn btn-success btn-sm">Editar</button>
             </form>
             <form class="d-inline" th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
