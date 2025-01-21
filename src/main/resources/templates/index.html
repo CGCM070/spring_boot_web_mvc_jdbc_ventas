@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>index</title>
 
     <link rel="stylesheet" href="/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container mx-auto px-4">
@@ -16,20 +17,28 @@
 
     <div class="flex flex-row justify-center my-4 space-x-4">
         <div class="basis-1/4 text-center">
-            <a href="/clientes" class="btn btn-blue px-4 py-2 bg-blue-500 text-white rounded">Ver Clientes</a>
+            <a href="/clientes" class="btn btn-primary text-white px-4 py-2 rounded">Ver Clientes</a>
         </div>
 
-<!--        <div class="basis-1/4 text-center">-->
-<!--            <a href="/fabricantes" class="btn btn-green px-4 py-2 bg-green-500 text-white rounded">Ver Fabricantes</a>-->
-<!--        </div>-->
+        <!--        <div class="basis-1/4 text-center">-->
+        <!--            <a href="/fabricantes" class="btn btn-green px-4 py-2 bg-green-500 text-white rounded">Ver Fabricantes</a>-->
+        <!--        </div>-->
 
-<!--    </div>-->
-<!--    &lt;!&ndash;    Otra Manera de redirección  con @{}  &ndash;&gt;-->
-<!--    <form th:action="@{/productos}" type="submit" class=" text-center mt-5">-->
-<!--        <button  type="submit" class="btn btn-gray  text-center" >con form (redirigir)</button>-->
-<!--    </form>-->
+        <!--    </div>-->
+        <!--    &lt;!&ndash;    Otra Manera de redirección  con @{}  &ndash;&gt;-->
+        <!--    <form th:action="@{/productos}" type="submit" class=" text-center mt-5">-->
+        <!--        <button  type="submit" class="btn btn-gray  text-center" >con form (redirigir)</button>-->
+        <!--    </form>-->
 
 
+    </div>
 </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

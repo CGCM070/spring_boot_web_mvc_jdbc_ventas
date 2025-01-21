@@ -1,72 +1,86 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Clientes</title>
-<style>
-.clearfix::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
 <body>
-<body>
+<div id="contenedora" class="container my-4">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+            <h1>Clientes</h1>
+        </div>
+        <div class="col-md-6 text-md-right">
+            <form action="/clientes/crear">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+        </div>
+    </div>
 
-	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
-		<div class="clearfix">
-			<div style="float: left; width: 50%">
-				<h1>Clientes</h1>
-			</div>
-			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-				
-				<div style="position: absolute; left: 39%; top : 39%;">
-					
-						<form action="/clientes/crear">
-							<input type="submit" value="Crear">
-						</form>
-					</div>
-				
-			</div>
-		</div>
-		<div class="clearfix">
-			<hr/>
-		</div>
-		<div class="clearfix">
-			<div style="float: left;width: 14%">Id</div>
-			<div style="float: left;width: 14%">Nombre</div>
-			<div style="float: left;width: 14%">Apellido1</div>
-			<div style="float: left;width: 14%">Apellido2</div>
-			<div style="float: left;width: 14%">Ciudad</div>
-			<div style="float: left;width: 14%">Categoría</div>
-			<div style="float: none;width: auto;overflow: hidden;">Acción</div>
-		</div>
-		<div class="clearfix">
-			<hr/>
-		</div>
+    <hr/>
+    <div class="row">
+        <span class="col-1"><strong>Id</strong></span>
+        <span class="col text-center"><strong>Nombre</strong></span>
+        <span class="col text-center"><strong>Apellido1</strong></span>
+        <span class="col text-center"><strong>Apellido2</strong></span>
+        <span class="col text-center"><strong>Ciudad</strong></span>
+        <span class="col text-center"><strong>Categoría</strong></span>
+        <span class="col"><strong>Acción</strong></span>
+    </div>
+    <hr/>
 
-		<div  th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 14%" th:text="${cliente.id}">0</div>
-			<div style="float: left;width: 14%" th:text="${cliente.nombre}">nombre</div>
-			<div style="float: left;width: 14%" th:text="${cliente.apellido1}">apellido1</div>
-			<div style="float: left;width: 14%" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</div>
-			<div style="float: left;width: 14%" th:text="${cliente.ciudad}">ciudad</div>
-			<div style="float: left;width: 14%" th:text="${cliente.categoria}">categoría</div>
-			<div style="float: none;width: auto;overflow: hidden;">
-				<form th:action="@{/clientes/__${cliente.id}__}" style="display: inline;">
-    				<input type="submit" value="Ver Detalle" />
-				</form>
-				<form th:action="@{/clientes/editar/}+${cliente.id} " style="display: inline;">
-    				<input type="submit" value="Editar" />
-				</form>
-				<form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post" style="display: inline;">
-    				<input type="submit" value="Eliminar" />
-				</form>
-			</div>
-		</div>
-	</div>
-</body>
+    <div class="row" th:each="cliente : ${listaClientes}">
+        <span class="col-1" th:text="${cliente.id}">0</span>
+        <span class="col text-center" th:text="${cliente.nombre}">nombre</span>
+        <span class="col text-center" th:text="${cliente.apellido1}">apellido1</span>
+        <span class="col text-center" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</span>
+        <span class="col text-center" th:text="${cliente.ciudad}">ciudad</span>
+        <span class="col text-center" th:text="${cliente.categoria}">categoría</span>
+        <span class="col">
+        <div class="btn-group d-flex justify-content-around" role="group">
+            <form class="d-inline" th:action="@{/clientes/__${cliente.id}__}">
+                <button type="submit" class="btn btn-info btn-sm">Detalle</button>
+            </form>
+            <form class="d-inline" th:action="@{/clientes/editar/}+${cliente.id}">
+                <button type="submit" class="btn btn-success btn-sm">Editar</button> <!-- Color verde para editar -->
+            </form>
+            <form class="d-inline" th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+            </form>
+        </div>
+    </span>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        <!--   ------>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
