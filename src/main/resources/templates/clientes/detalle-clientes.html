@@ -12,10 +12,17 @@
         <p th:text="${error}">Error</p>
     </div>
 
+    <div class="col-md-12 text-md-right">
+        <form action="/clientes">
+            <button type="submit" class="btn btn-primary">Volver</button>
+        </form>
+    </div>
+
+
     <div th:if="${clienteDetalle}">
         <div class="row">
             <div class="col-12">
-                <h1 th:text="'Detalle de ' + ${clienteDetalle.nombre}" class="display-4"></h1>
+                <h1 th:text="'Detalles de ' + ${clienteDetalle.nombre}" class="display-4"></h1>
             </div>
         </div>
 
