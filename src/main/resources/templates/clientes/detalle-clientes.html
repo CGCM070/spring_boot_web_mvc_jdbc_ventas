@@ -54,12 +54,17 @@
             <ul th:if="${!clienteDetalle.pedidos.isEmpty()}" class="list-group col-12">
                 <li th:each="pedidoDTO : ${clienteDetalle.pedidos}" class="list-group-item">
 
-                    <strong>ID:</strong> <span th:text="${pedidoDTO.id}"></span>
+                    <div class="col-md-4">
+                        <p><strong>ID Pedido :</strong> <span th:text="${pedidoDTO.id}"></span></p>
+                    </div>
 
-                    <strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span>
+                    <div class="col-md-4">
+                        <p><strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span></p>
+                    </div>
 
-                    <strong>Total:</strong> <span th:text="${pedidoDTO.total}"></span> €
-
+                    <div class="col-md-4">
+                        <p><strong>Total:</strong> <span th:text="${pedidoDTO.total}"></span>€</p>
+                    </div>
 
                 </li>
             </ul>
