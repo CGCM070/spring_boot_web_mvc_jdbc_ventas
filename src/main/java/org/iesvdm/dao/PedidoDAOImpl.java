@@ -121,6 +121,8 @@ public class PedidoDAOImpl implements PedidoDAO {
         log.info("Delete de Pedido con {} registros eliminados.", rows);
     }
 
+
+    // Obtengo todos los pedidos de clientes byClienteId
     @Override
     public List<Pedido> getAllPedidoByCliId(int id_cliente) {
 
@@ -139,6 +141,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 
     }
 
+    // Obtengo todos los pedidos del comercial ByComercialId
     @Override
     public List<Pedido> getAllByComId(int id_comercial) {
 
@@ -168,7 +171,6 @@ public class PedidoDAOImpl implements PedidoDAO {
                         rs.getDate("fecha"),
                         rs.getDouble("total")
                 ), id_cliente
-
         );
 
         log.info("Devueltos {} registros para el cliente con id {}.", listPedidoDTO.size() , id_cliente);
