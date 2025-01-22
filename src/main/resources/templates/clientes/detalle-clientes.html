@@ -48,10 +48,12 @@
         </div>
 
         <div class="row">
-            <div th:if="${clienteDetalle.pedidos.isEmpty()}" class="col-12">
+            <div th:if="${clienteDetalle.pedidos.isEmpty()}" class=" col-12 alert alert-danger">
                 <p>No hay pedidos registrados para este cliente.</p>
             </div>
-            <ul th:if="${!clienteDetalle.pedidos.isEmpty()}" class="list-group col-12">
+
+
+            <ul class="list-group col-12">
                 <li th:each="pedidoDTO : ${clienteDetalle.pedidos}" class="list-group-item">
 
                     <div class="col-md-4">

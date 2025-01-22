@@ -8,9 +8,7 @@
 <body>
 
 <div class="container mt-5">
-    <div th:if="${error}" class="alert alert-danger">
-        <p th:text="${error}">Error</p>
-    </div>
+
 
     <div class="col-12">
         <h1 th:text="'Detalles de Comercial  ' + ${comercial.nombre}" class="display-4"></h1>
@@ -55,7 +53,7 @@
             <div class="col-md-12">
 
                 <!-- si no tenemos pedido-->
-                <div th:if="${clienteDTO.pedidos.isEmpty()}" class="col-12">
+                <div th:if="${clienteDTO.pedidos.isEmpty()}" class="alert alert-danger">
                     <p>No hay pedidos registrados para este cliente.</p>
                 </div>
 
