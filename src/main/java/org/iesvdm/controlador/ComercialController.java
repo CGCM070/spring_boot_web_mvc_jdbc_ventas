@@ -51,7 +51,6 @@ public class ComercialController {
     }
 
 
-
     @GetMapping("/comercial/editar/{id}")
     public String editar(Model model, @PathVariable Integer id) {
 
@@ -78,6 +77,14 @@ public class ComercialController {
         comercialService.deleteComercial(id);
 
         return new RedirectView("/comercial");
+    }
+
+    @GetMapping("/comercial/detalles/{id}")
+    public String infoComercial (Model model , @PathVariable int id){
+
+        Comercial comercial = comercialService.findById(id);
+        model.addAttribute("comercial", comercial);
+        return "/comercial/detalle-comercial";
     }
 
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles Comercial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}">Error</p>
+    </div>
+
+    <div class="col-md-12 text-md-right">
+        <form action="/comercial">
+            <button type="submit" class="btn btn-primary">Volver</button>
+        </form>
+    </div>
+
+
+    <div th:if="${comercial}">
+        <div class="row">
+            <div class="col-12">
+                <h1 th:text="'Detalles de ' + ${comercial.nombre}" class="display-4"></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <p><strong>Nombre:</strong> <span th:text="${comercial.nombre}"></span></p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Apellido 1:</strong> <span th:text="${comercial.apellido1}"></span></p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Apellido 2:</strong> <span th:text="${comercial.apellido2}"></span></p>
+            </div>
+
+            <div class="col-md-4">
+                <p><strong>Comisión:</strong> <span th:text="${comercial.apellido2}"></span></p>
+            </div>
+
+
+            <!--            <div class="col-md-4">-->
+            <!--                <p><strong>Cantidad Pedido:</strong> <span th:text="${clienteDetalle.cantidadPedidos}"></span></p>-->
+            <!--            </div>-->
+        </div>
+
+<!--        <div class="row mt-4">-->
+<!--            <div class="col-12">-->
+<!--                <h2>Pedidos:</h2>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        -->
+<!--        <div class="row">-->
+<!--            <div th:if="${clienteDetalle.pedidos.isEmpty()}" class="col-12">-->
+<!--                <p>No hay pedidos registrados para este cliente.</p>-->
+<!--            </div>-->
+<!--            <ul th:if="${!clienteDetalle.pedidos.isEmpty()}" class="list-group col-12">-->
+<!--                <li th:each="pedidoDTO : ${clienteDetalle.pedidos}" class="list-group-item">-->
+
+<!--                    <strong>ID:</strong> <span th:text="${pedidoDTO.id}"></span>-->
+
+<!--                    <strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span>-->
+
+<!--                    <strong>Total:</strong> <span th:text="${pedidoDTO.total}"></span> €-->
+
+
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
