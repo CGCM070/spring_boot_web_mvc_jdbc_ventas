@@ -19,22 +19,22 @@
 
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control"/>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
         </div>
 
         <div class="form-group">
             <label for="apellido1">Apellido1:</label>
-            <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control"/>
+            <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" readonly/>
         </div>
 
         <div class="form-group">
             <label for="apellido2">Apellido2:</label>
-            <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control"/>
+            <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" required/>
         </div>
 
         <div class="form-group">
             <label >Comisión:</label>
-            <input type="number" id="ciudad" th:field="*{comision}" class="form-control"/>
+            <input type="number" id="ciudad" th:field="*{comision}" class="form-control" required/>
         </div>
 
         <!--        <div class="form-group">-->
