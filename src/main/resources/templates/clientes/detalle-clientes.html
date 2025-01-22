@@ -19,25 +19,25 @@
     </div>
 
 
-    <div th:if="${clienteDetalle}">
+    <div th:if="${clienteDTO}">
         <div class="row">
             <div class="col-12">
-                <h1 th:text="'Detalles de ' + ${clienteDetalle.nombre}" class="display-4"></h1>
+                <h1 th:text="'Detalles de ' + ${clienteDTO.nombre}" class="display-4"></h1>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4">
-                <p><strong>Nombre:</strong> <span th:text="${clienteDetalle.nombre}"></span></p>
+                <p><strong>Nombre:</strong> <span th:text="${clienteDTO.nombre}"></span></p>
             </div>
             <div class="col-md-4">
-                <p><strong>Apellido:</strong> <span th:text="${clienteDetalle.apellido1}"></span></p>
+                <p><strong>Apellido:</strong> <span th:text="${clienteDTO.apellido1}"></span></p>
             </div>
             <div class="col-md-4">
-                <p><strong>Ciudad:</strong> <span th:text="${clienteDetalle.ciudad}"></span></p>
+                <p><strong>Ciudad:</strong> <span th:text="${clienteDTO.ciudad}"></span></p>
             </div>
 <!--            <div class="col-md-4">-->
-<!--                <p><strong>Cantidad Pedido:</strong> <span th:text="${clienteDetalle.cantidadPedidos}"></span></p>-->
+<!--                <p><strong>Cantidad Pedido:</strong> <span th:text="${clienteDTO.cantidadPedidos}"></span></p>-->
 <!--            </div>-->
         </div>
 
@@ -48,18 +48,23 @@
         </div>
 
         <div class="row">
-            <div th:if="${clienteDetalle.pedidos.isEmpty()}" class="col-12">
+            <div th:if="${clienteDTO.pedidos.isEmpty()}" class="col-12">
                 <p>No hay pedidos registrados para este cliente.</p>
             </div>
-            <ul th:if="${!clienteDetalle.pedidos.isEmpty()}" class="list-group col-12">
-                <li th:each="pedidoDTO : ${clienteDetalle.pedidos}" class="list-group-item">
+            <ul th:if="${!clienteDTO.pedidos.isEmpty()}" class="list-group col-12">
+                <li th:each="pedidoDTO : ${clienteDTO.pedidos}" class="list-group-item">
 
-                    <strong>ID:</strong> <span th:text="${pedidoDTO.id}"></span>
+                    <div class="col-md-4">
+                        <p><strong>ID Pedido :</strong> <span th:text="${pedidoDTO.id}"></span></p>
+                    </div>
 
-                    <strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span>
+                    <div class="col-md-4">
+                        <p><strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span></p>
+                    </div>
 
-                    <strong>Total:</strong> <span th:text="${pedidoDTO.total}"></span> €
-
+                    <div class="col-md-4">
+                        <p><strong>Total:</strong> <span th:text="${pedidoDTO.total}"></span>€</p>
+                    </div>
 
                 </li>
             </ul>

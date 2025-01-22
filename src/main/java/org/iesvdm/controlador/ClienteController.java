@@ -57,7 +57,7 @@ public class ClienteController {
 
         Optional<ClienteDTO>clienteDTO = clienteService.obtenerDatosCliente( id);
         if (clienteDTO.isPresent()){
-            model.addAttribute("clienteDetalle" , clienteDTO.get());
+            model.addAttribute("clienteDTO" , clienteDTO.get());
         }else {
             model.addAttribute("error", "Cliente no econtrado");
         }
