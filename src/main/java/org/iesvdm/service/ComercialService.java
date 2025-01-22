@@ -43,7 +43,7 @@ public class ComercialService {
     }
 
     public void deleteComercial(int id) {
-        //ver las agergaciones en las tablas
+        //ver las agregaciones en las tablas
         List<Pedido> listaPedidos = pedidoDAO.getAllByComId(id);
         for (Pedido pedido :listaPedidos ){
             pedidoDAO.delete(pedido.getId());

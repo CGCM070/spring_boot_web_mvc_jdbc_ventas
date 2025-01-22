@@ -1,8 +1,10 @@
 package org.iesvdm.controlador;
 
 
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
+import org.iesvdm.service.ClienteService;
 import org.iesvdm.service.ComercialService;
 import org.iesvdm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ComercialController {
@@ -24,6 +27,9 @@ public class ComercialController {
 
     @Autowired
     PedidoService pedidoService;
+
+    @Autowired
+    ClienteService clienteService;
 
     @GetMapping("/comercial")
     public String listar(Model model) {
@@ -92,9 +98,15 @@ public class ComercialController {
         List<Pedido> pedidoList = pedidoService.listaPedidoByComID(id);
         model.addAttribute("pedidoList", pedidoList);
 
+        Optional<ClienteDTO> clienteDTO = clienteService.obtenerDatosCliente( id);
 
+        if (clienteDTO.isPresent()){
+            model.addAttribute("clienteDTO" , clienteDTO.get());
+        }else {
+            model.addAttribute("error", "Cliente no econtrado");
+        }
 
-        return "comercial/detalle-comercial2";
+        return "/comercial/detalle-comercial2";
     }
 
 }

@@ -7,17 +7,17 @@ import org.iesvdm.modelo.Comercial;
 
 public interface ComercialDAO {
 	
-	public void create(Comercial comercial);
+	 void create(Comercial comercial);
 	
-	public List<Comercial> getAll();
+	 List<Comercial> getAll();
 
-	public Optional<Comercial>  find(int id);
+	 Optional<Comercial>  find(int id);
 
-	public int getCantidadPedidos (int id_comercial);
+	 int getCantidadPedidos (int id_comercial);
 	
-	public void update(Comercial comercial);
+	 void update(Comercial comercial);
 	
-	public void delete(long id);
+	 void delete(long id);
 
 
 }

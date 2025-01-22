@@ -12,6 +12,10 @@
         <p th:text="${error}">Error</p>
     </div>
 
+    <div class="col-12">
+        <h1 th:text="'Detalles de Comercial  ' + ${comercial.nombre}" class="display-4"></h1>
+    </div>
+
     <div class="col-md-12 text-md-right">
         <form action="/comercial">
             <button type="submit" class="btn btn-primary">Volver</button>
@@ -21,15 +25,10 @@
 
     <div th:if="${comercial}">
         <div class="row">
-            <div class="col-12 my-4">
-                <h1 th:text="'Detalles de Comercial  ' + ${comercial.nombre}" class="display-4"></h1>
-            </div>
-        </div>
 
-        <div class="row">
+            <!-- Información del Comercial -->
             <div class="col-md-4">
-                <p><a th:href="@{/comercial/detalles/__${comercial.id}__}"> <strong>Nombre:</strong> <span th:text="${comercial.nombre} "></span>
-                </a></p>
+                <p><strong>Nombre:</strong> <span th:text="${comercial.nombre}"></span></p>
             </div>
             <div class="col-md-4">
                 <p><strong>Apellido 1:</strong> <span th:text="${comercial.apellido1}"></span></p>
@@ -37,24 +36,28 @@
             <div class="col-md-4">
                 <p><strong>Apellido 2:</strong> <span th:text="${comercial.apellido2}"></span></p>
             </div>
-
             <div class="col-md-4">
                 <p><strong>Comisión:</strong> <span th:text="${comercial.comision}"></span></p>
             </div>
 
-            <div>
-                <select>
-
-                    <option
-                            th:each="pedido : ${pedidoList} "
-                            th:text="${pedido.fecha}">
-                    </option>
-
-                </select>
-
+            <!-- Información del Cliente -->
+            <div class="col-md-4">
+                <p><strong>Nombre de Cliente:</strong>
+                    <a th:href="@{/clientes/detalles/{id}(id=${clienteDTO.id})}" th:text="${clienteDTO.nombre}"></a>
+                </p>
             </div>
 
+        </div>
 
+        <!-- Pedidos -->
+        <div class="row mt-4 container-lg">
+            <h5 class="mx-3">Pedidos</h5>
+            <div class="col-md-12">
+                <div th:each="pedido : ${pedidoList}" class="pedido-item p-3 mb-3 border rounded">
+                    <p><strong>Fecha:</strong> <span th:text="${pedido.fecha}"></span></p>
+                    <p><strong>Total:</strong> <span th:text="${pedido.total}"></span></p>
+                </div>
+            </div>
         </div>
 
 
