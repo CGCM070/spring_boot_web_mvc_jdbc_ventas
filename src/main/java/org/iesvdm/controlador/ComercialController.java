@@ -95,16 +95,9 @@ public class ComercialController {
         Comercial comercial = comercialService.findById(id);
         model.addAttribute("comercial", comercial);
 
-        List<Pedido> pedidoList = pedidoService.listaPedidoByComID(id);
-        model.addAttribute("pedidoList", pedidoList);
-
         Optional<ClienteDTO> clienteDTO = clienteService.obtenerDatosCliente( id);
+        model.addAttribute("clienteDTO" , clienteDTO.get());
 
-        if (clienteDTO.isPresent()){
-            model.addAttribute("clienteDTO" , clienteDTO.get());
-        }else {
-            model.addAttribute("error", "Cliente no econtrado");
-        }
 
         return "/comercial/detalle-comercial2";
     }
