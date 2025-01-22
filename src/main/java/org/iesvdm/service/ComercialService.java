@@ -56,4 +56,10 @@ public class ComercialService {
     public int getCantidadPedidos (int id_cliente){
         return  comercialDAO.getCantidadPedidos(id_cliente);
     }
+
+
+    public  void detalles2 (int id) {
+        comercialDAO.find(id);
+        pedidoDAO.getAllByComId(id);
+    }
 }

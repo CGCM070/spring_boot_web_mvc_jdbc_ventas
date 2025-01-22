@@ -1,9 +1,10 @@
 package org.iesvdm.controlador;
 
 
-
 import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.Pedido;
 import org.iesvdm.service.ComercialService;
+import org.iesvdm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class ComercialController {
 
     @Autowired
     ComercialService comercialService;
+
+    @Autowired
+    PedidoService pedidoService;
 
     @GetMapping("/comercial")
     public String listar(Model model) {
@@ -80,15 +84,17 @@ public class ComercialController {
     }
 
     @GetMapping("/comercial/detalles/{id}")
-    public String infoComercial (Model model , @PathVariable int id){
+    public String infoComercial(Model model, @PathVariable int id) {
 
         Comercial comercial = comercialService.findById(id);
         model.addAttribute("comercial", comercial);
 
-        int cantidad = comercialService.getCantidadPedidos(id);
-        model.addAttribute("cantidad" , cantidad);
+        List<Pedido> pedidoList = pedidoService.listaPedidoByComID(id);
+        model.addAttribute("pedidoList", pedidoList);
 
-        return "/comercial/detalle-comercial";
+
+
+        return "comercial/detalle-comercial2";
     }
 
 }
