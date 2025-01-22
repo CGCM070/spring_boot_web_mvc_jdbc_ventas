@@ -84,6 +84,10 @@ public class ComercialController {
 
         Comercial comercial = comercialService.findById(id);
         model.addAttribute("comercial", comercial);
+
+        int cantidad = comercialService.getCantidadPedidos(id);
+        model.addAttribute("cantidad" , cantidad);
+
         return "/comercial/detalle-comercial";
     }
 

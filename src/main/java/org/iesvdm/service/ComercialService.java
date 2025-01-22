@@ -51,4 +51,9 @@ public class ComercialService {
 
         comercialDAO.delete(id);
     }
+
+
+    public int getCantidadPedidos (int id_cliente){
+        return  comercialDAO.getCantidadPedidos(id_cliente);
+    }
 }

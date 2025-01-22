@@ -86,6 +86,17 @@ public class ComercialDAOImpl implements ComercialDAO {
     }
 
     @Override
+    public int getCantidadPedidos(int id_comercial) {
+        String sql = "SELECT COUNT(*) from comercial " +
+                     "JOIN ventas.pedido p ON comercial.id = p.id_comercial " +
+                     " WHERE comercial.id = ?";
+
+
+        Integer cantidad = jdbcTemplate.queryForObject(sql, Integer.class, id_comercial);
+        return cantidad != null ? cantidad : 0;
+    }
+
+    @Override
     public void update(Comercial comercial) {
 
         int rows = jdbcTemplate.update("""
