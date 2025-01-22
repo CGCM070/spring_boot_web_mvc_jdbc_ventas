@@ -44,11 +44,12 @@ public class ComercialService {
 
     public void deleteComercial(int id) {
         //ver las agregaciones en las tablas
+        //borro todos los pedidos de este comercial
         List<Pedido> listaPedidos = pedidoDAO.getAllByComId(id);
         for (Pedido pedido :listaPedidos ){
             pedidoDAO.delete(pedido.getId());
         }
-
+        //luego borro el comercial
         comercialDAO.delete(id);
     }
 
@@ -57,9 +58,4 @@ public class ComercialService {
         return  comercialDAO.getCantidadPedidos(id_cliente);
     }
 
-
-    public  void detalles2 (int id) {
-        comercialDAO.find(id);
-        pedidoDAO.getAllByComId(id);
-    }
 }

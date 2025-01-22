@@ -3,10 +3,8 @@ package org.iesvdm.controlador;
 
 import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.modelo.Comercial;
-import org.iesvdm.modelo.Pedido;
 import org.iesvdm.service.ClienteService;
 import org.iesvdm.service.ComercialService;
-import org.iesvdm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +22,6 @@ public class ComercialController {
 
     @Autowired
     ComercialService comercialService;
-
-    @Autowired
-    PedidoService pedidoService;
 
     @Autowired
     ClienteService clienteService;
