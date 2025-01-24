@@ -180,6 +180,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 
     }
 
+    // Datos para la vista de comercial(detalles comercial)
     @Override
     public List<PedidoDTO> getPedidoDTOforComercialDetail(int id_comercial) {
         String query = """

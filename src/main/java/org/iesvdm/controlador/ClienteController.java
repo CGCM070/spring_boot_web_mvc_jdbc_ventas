@@ -55,7 +55,7 @@ public class ClienteController {
     @GetMapping("/clientes/detalles/{id}")
     public String infoCliente(Model model, @PathVariable int id) {
 
-        Optional<ClienteDTO> clienteDTO = clienteService.obtenerDatosCliente( id);
+        Optional<ClienteDTO> clienteDTO = clienteService.obtenerDatosCliente(id);
         
         if (clienteDTO.isPresent()){
             model.addAttribute("clienteDetalle" , clienteDTO.get());
