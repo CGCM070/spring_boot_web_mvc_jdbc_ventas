@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
@@ -11,14 +11,14 @@
 <div class="container mx-auto px-4">
     <div class="flex flex-col items-center py-4 border-b-2">
         <div class="text-center text-4xl ">
-            <h1>Ventas</h1>
+            <h1 th:text="#{msg.ventas.titte}"></h1>
         </div>
     </div>
 
     <div class="flex flex-row justify-center my-4 space-x-4">
         <div class="basis-1/4 text-center">
-            <a href="/clientes" class="btn btn-primary text-white px-4 py-2 rounded">Ver Clientes</a>
-            <a href="/comercial" class="btn btn-primary text-white px-4 py-2 rounded">Ver Comerciales</a>
+            <a href="/comercial" class="btn btn-primary text-white px-4 py-2 rounded" th:text="#{msg.vercomercial}" > </a>
+            <a href="/clientes" class="btn btn-primary text-white px-4 py-2 rounded" th:text="#{msg.vercliente}"> </a>
         </div>
 
         <!--        <div class="basis-1/4 text-center">-->

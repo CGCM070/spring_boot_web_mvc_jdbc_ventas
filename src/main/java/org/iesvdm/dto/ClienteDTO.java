@@ -14,7 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ClienteDTO {
+
     private long id;
+
+
     private String nombre;
     private String apellido1;
     private String ciudad;
