@@ -171,7 +171,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                         .fecha(rs.getDate("fecha"))
                         .id_cliente(rs.getInt("id_cliente"))
                         .id_comercial(rs.getInt("id_comercial"))
-                        .build(), // nombre_comercial predeterminado
+                        .build(), // nombre_comercial predeterminado pq no hago join para recuperarlo
                 id_cliente
         );
         log.info("Devueltos {} registros para el cliente con id {}.", listPedidoDTO.size(), id_cliente);
