@@ -7,87 +7,94 @@
 </head>
 <body>
 
+<!-- Contenedor principal -->
 <div class="container mt-5">
 
+    <!-- Encabezado y botón "Volver" -->
+    <div class="row mb-4">
 
-    <div class="col-12">
-        <h1 th:text="'Detalles de Comercial  ' + ${comercial.nombre}" class="display-4"></h1>
+        <div class="col-10 d-flex align-items-center">
+            <h1 th:text="'Detalles de Comercial ' + ${comercial.nombre}" class="display-4"></h1>
+        </div>
+
+        <div class="col-2 d-flex align-items-center">
+            <form action="/comercial">
+                <button type="submit" class="btn btn-primary">Volver</button>
+            </form>
+        </div>
     </div>
 
-    <div class="col-md-12 text-md-right">
-        <form action="/comercial">
-            <button type="submit" class="btn btn-primary">Volver</button>
-        </form>
-    </div>
-
-
+    <!-- Información del comercial -->
     <div th:if="${comercial}">
         <div class="row">
 
-            <!-- Info del Comercial -->
-            <div class="col-md-4">
-                <p><strong>Nombre:</strong> <span th:text="${comercial.nombre}"></span></p>
-            </div>
-            <div class="col-md-4">
-                <p><strong>Apellido 1:</strong> <span th:text="${comercial.apellido1}"></span></p>
-            </div>
-            <div class="col-md-4">
-                <p><strong>Apellido 2:</strong> <span th:text="${comercial.apellido2}"></span></p>
-            </div>
-            <div class="col-md-4">
-                <p><strong>Comisión:</strong> <span th:text="${comercial.comision}"></span></p>
+            <!-- Bloque Nombre -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Nombre:</strong> <span th:text="${comercial.nombre}"></span></p>
+                    </div>
+                </div>
             </div>
 
+            <!-- Bloque Apellido 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Apellido 1:</strong> <span th:text="${comercial.apellido1}"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque Apellido 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Apellido 2:</strong> <span th:text="${comercial.apellido2}"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque Comisión -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>Comisión:</strong> <span th:text="${comercial.comision}"></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Pedidos -->
-        <div class="row mt-4 container-lg">
-            <h5 class="">Pedidos</h5>
-            <div class="col-md-12">
-
-                <!-- si no tenemos pedido-->
+        <!-- Listado de pedidos -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h2>Pedidos</h2>
+            </div>
+            <div class="col-12">
                 <div th:if="${pedidoDTOList.isEmpty()}" class="alert alert-danger">
                     <p>No hay pedidos registrados para este cliente.</p>
                 </div>
+                <ul class="list-group">
+                    <li th:each="pedidos : ${pedidoDTOList}" class="list-group-item mb-4">
 
-                <ul class="list-group col-12">
-                    <li th:each="pedidos : ${pedidoDTOList}" class="list-group-item">
+                        <!-- Detalles del pedido -->
+                        <p><strong>ID Pedido :</strong> <span th:text="${pedidos.id}"></span></p>
+                        <p><strong>Fecha:</strong> <span th:text="${pedidos.fecha}"></span></p>
+                        <p><strong>Total:</strong> <span th:text="${pedidos.total}"></span>€</p>
+                        <p><strong>ID Cliente:</strong> <span th:text="${pedidos.id_cliente}"></span></p>
 
-                        <div class="col-md-4">
-                            <p><strong>ID Pedido :</strong> <span th:text="${pedidos.id}"></span></p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <p><strong>Fecha:</strong> <span th:text="${pedidos.fecha}"></span></p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <p><strong>Total:</strong> <span th:text="${pedidos.total}"></span>€</p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <p><strong>ID Cliente:</strong> <span th:text="${pedidos.id_cliente}"></span></p>
-                        </div>
-
-                        <div class="col-md-4">
-                            <p>
-                                <strong>Nombre Cliente:</strong>
-                                <a th:href="@{/clientes/detalles/{id}(id=${pedidos.id_cliente})}">
-
-                                    <span th:text="${pedidos.nombre_cliente}"></span>
-
-                                </a>
-                            </p>
-
-                        </div>
+                        <!-- Enlace a detalle de cliente por nombre -->
+                        <p>
+                            <strong>Nombre Cliente:</strong>
+                            <a th:href="@{/clientes/detalles/{id}(id=${pedidos.id_cliente})}">
+                                <span th:text="${pedidos.nombre_cliente}"></span>
+                            </a>
+                        </p>
 
                     </li>
                 </ul>
-
             </div>
         </div>
-
-
     </div>
 </div>
 

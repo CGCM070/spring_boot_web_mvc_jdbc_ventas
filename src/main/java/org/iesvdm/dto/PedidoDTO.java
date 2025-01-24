@@ -19,6 +19,7 @@ public class PedidoDTO {
     private int id_cliente;
      private int id_comercial;
 
+     //pq para algunos casos lo usare y otras no así solo las mapeo en las query que necesite
     @Builder.Default
     private String nombre_cliente = "";
 
