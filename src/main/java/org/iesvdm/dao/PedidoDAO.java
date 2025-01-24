@@ -18,10 +18,16 @@ public interface PedidoDAO {
 
      void delete(long id);
 
+     // para eliminar en cascada cada pedido asociado a un cliente
      List<Pedido> getAllPedidoByCliId(int id_cliente);
 
+     // para eliminar en cascada cada pedido asociado a un comercial
      List<Pedido> getAllByComId(int id_comercial);
 
+     //mapea solo ciertos campos para la vista de clientes detalles (vista Cliente )
      List<PedidoDTO> getPedidoByClienteId (int id_cliente);
+
+     // mapea solo ciertos campos para la vista de clientes detalles (vista Comercial )
+     List<PedidoDTO> getPedidoDTOforComercialDetail (int id_comercial);
 
 }

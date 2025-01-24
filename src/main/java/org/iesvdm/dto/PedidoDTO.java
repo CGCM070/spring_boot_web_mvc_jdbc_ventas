@@ -14,7 +14,14 @@ import java.sql.Date;
 public class PedidoDTO {
 
     private int id;
-    private Date fecha;
     private double total;
+    private Date fecha;
+    private int id_cliente;
+     private int id_comercial;
 
+    @Builder.Default
+    private String nombre_cliente = "";
+
+    @Builder.Default
+    private String nombre_comercial = "";
 }
