@@ -3,6 +3,7 @@ package org.iesvdm.service;
 
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,10 @@ public class ComercialService {
         }
         //luego borro el comercial
         comercialDAO.delete(id);
+    }
+
+    public ComercialDTO totalAndMediaPedidos (int id){
+        return comercialDAO.totalAndMediaPedidos(id);
     }
 
 

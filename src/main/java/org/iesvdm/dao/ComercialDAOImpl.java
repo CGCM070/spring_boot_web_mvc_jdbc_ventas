@@ -2,8 +2,10 @@ package org.iesvdm.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -123,5 +125,26 @@ public class ComercialDAOImpl implements ComercialDAO {
 
         log.info("Delete de Comercial con {} registros eliminados.", rows);
     }
+
+    @Override
+    public ComercialDTO totalAndMediaPedidos(int id) {
+        String query = """
+        SELECT 
+            COUNT(*) AS total_pedido, 
+             ROUND (AVG(p.total), 2) AS media_pedido
+        FROM 
+            pedido p
+        WHERE 
+            p.id_comercial = ?
+    """;
+
+        //  queryForObject para devolver un único objeto
+        return jdbcTemplate.queryForObject(
+                query,
+                new BeanPropertyRowMapper<>(ComercialDTO.class),
+                id
+        );
+    }
+
 
 }

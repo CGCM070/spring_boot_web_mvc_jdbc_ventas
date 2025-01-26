@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 
 import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.service.ClienteService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +99,15 @@ public class ComercialController {
 
         List<PedidoDTO> pedidoDTOList = pedidoService.commercialDetail(id);
         model.addAttribute("pedidoDTOList", pedidoDTOList);
+
+        ComercialDTO comercialDTO = comercialService.totalAndMediaPedidos(id);
+        model.addAttribute("comercialDTO", comercialDTO);
+
+        PedidoDTO maxPedido = pedidoDTOList.stream().max(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
+        PedidoDTO minPedido = pedidoDTOList.stream().min(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
+
+        model.addAttribute("maxPedido", maxPedido);
+        model.addAttribute("minPedido", minPedido);
 
         return "/comercial/detalle-comercial2";
     }
