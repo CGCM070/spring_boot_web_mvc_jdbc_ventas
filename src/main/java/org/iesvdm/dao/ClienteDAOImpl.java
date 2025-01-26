@@ -1,6 +1,7 @@
 package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -135,5 +136,7 @@ public class ClienteDAOImpl implements ClienteDAO {
         log.info("Delete de Cliente con {} registros eliminados.", rows);
 
     }
+
+
 
 }

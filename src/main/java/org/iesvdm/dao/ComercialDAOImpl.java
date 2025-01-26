@@ -2,6 +2,7 @@ package org.iesvdm.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,20 @@ public class ComercialDAOImpl implements ComercialDAO {
                 new BeanPropertyRowMapper<>(ComercialDTO.class),
                 id
         );
+    }
+
+    @Override
+    public List<ClienteDTO> listaPorCuantia(int id) {
+
+        String query = """
+                SELECT c.nombre, ROUND(SUM(p.total), 2)  AS cuantia
+                                   FROM pedido p
+                                   JOIN cliente c ON c.id = p.id_cliente
+                                   WHERE p.id_comercial = ?
+                                   GROUP BY c.id, c.nombre
+                                   ORDER BY cuantia DESC;
+                """;
+        return  jdbcTemplate.query(query, new BeanPropertyRowMapper<>(ClienteDTO.class), id);
     }
 
 

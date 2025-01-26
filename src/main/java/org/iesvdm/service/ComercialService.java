@@ -3,6 +3,7 @@ package org.iesvdm.service;
 
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
@@ -58,6 +59,10 @@ public class ComercialService {
         return comercialDAO.totalAndMediaPedidos(id);
     }
 
+
+    public List<ClienteDTO>listaPorCuantia (int id) {
+        return  comercialDAO.listaPorCuantia(id);
+    }
 
     public int getCantidadPedidos (int id_cliente){
         return  comercialDAO.getCantidadPedidos(id_cliente);

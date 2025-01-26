@@ -198,6 +198,8 @@ public class PedidoDAOImpl implements PedidoDAO {
                 WHERE p.id_comercial = ?
                 """;
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(PedidoDTO.class), id_comercial);
-
     }
+
+
+
 }

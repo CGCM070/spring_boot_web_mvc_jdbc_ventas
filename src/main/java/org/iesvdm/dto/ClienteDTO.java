@@ -18,6 +18,6 @@ public class ClienteDTO {
     private String nombre;
     private String apellido1;
     private String ciudad;
-    private int cantidadPedidos;
+    private double cuantia;
     private List<PedidoDTO> pedidos;
 }

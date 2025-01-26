@@ -114,7 +114,7 @@
 
             <div class="col-12">
                 <div th:if="${pedidoDTOList.isEmpty()}" class="alert alert-danger">
-                    <p>No hay pedidos registrados para este cliente.</p>
+                    <p>No hay pedidos registrados para este comercial.</p>
                 </div>
 
                 <ul class="list-group list-unstyled">
@@ -139,11 +139,22 @@
                 </ul>
 
             </div>
-        </div>
 
+
+        </div>
     </div>
 
+    <div class="mt-2">
+        <ul class=" container list-group list-unstyled">
+            <h3>Por cuantía</h3>
+            <li th:each="cliente : ${listaClienteDto}" class="list-group-item mb-4 list-unstyled ">
 
+                <!-- Detalles del Cliente y su pedido -->
+                <p><strong>Nombre :</strong> <span th:text="${cliente.nombre}"></span></p>
+                <p><strong>Total:</strong> <span th:text="${cliente.cuantia}"></span></p>
+
+        </ul>
+    </div>
 
 
 

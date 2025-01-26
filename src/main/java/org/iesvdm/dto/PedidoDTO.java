@@ -17,7 +17,7 @@ public class PedidoDTO {
     private double total;
     private Date fecha;
     private int id_cliente;
-     private int id_comercial;
+    private int id_comercial;
 
      //pq para algunos casos lo usare y en otras no, así solo las mapeo en las query las que necesite
     @Builder.Default

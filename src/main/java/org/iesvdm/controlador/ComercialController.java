@@ -109,6 +109,9 @@ public class ComercialController {
         model.addAttribute("maxPedido", maxPedido);
         model.addAttribute("minPedido", minPedido);
 
+        List<ClienteDTO> listaClienteDto = comercialService.listaPorCuantia(id);
+        model.addAttribute("listaClienteDto",listaClienteDto);
+
         return "/comercial/detalle-comercial2";
     }
 
