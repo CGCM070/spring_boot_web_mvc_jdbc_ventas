@@ -15,7 +15,8 @@ public interface ClienteDAO {
 	 void update(Cliente cliente);
 	
 	 void delete(long id);
-     void getCantidadPedido(int id);
+
+     int  getCantidadPedido(int id);
 
 
 }

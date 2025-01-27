@@ -138,8 +138,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public void getCantidadPedido(int id) {
-
+    public int getCantidadPedido(int id) {
 
         String query = """
                 SELECT COUNT (*) FROM cliente
@@ -148,6 +147,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                 """;
 
         int cantidad = jdbcTemplate.queryForObject(query, Integer.class , id);
+
+        return cantidad != null ? cantidad : 0;
     }
 
 
