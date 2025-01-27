@@ -118,16 +118,21 @@
                 </div>
 
                 <ul class="list-group list-unstyled">
-                    <li th:each="pedidos : ${pedidoDTOList}" class="list-group-item mb-4 list-unstyled"
-                        th:class="${pedidos.id == maxPedido.id ? 'bg-success text-white ' : (pedidos.id == minPedido.id ? 'bg-warning' : '')}">
+                    <li th:each="pedidos : ${pedidoDTOList}" class="list-group-item mb-4 list-unstyled">
 
                         <!-- Detalles del pedido -->
                         <p><strong>ID Pedido :</strong> <span th:text="${pedidos.id}"></span></p>
                         <p><strong>Fecha:</strong> <span th:text="${pedidos.fecha}"></span></p>
-                        <p><strong>Total:</strong> <span th:text="${pedidos.total}"></span>€</p>
+
+
+                        <p th:class="${pedidos.id == maxPedido.id ? 'bg-success text-white ' : (pedidos.id == minPedido.id ? 'bg-warning' : '')}">
+                            <strong>Total:</strong> <span th:text="${pedidos.total}"></span>€
+                        </p>
+
                         <p><strong>ID Cliente:</strong> <span th:text="${pedidos.id_cliente}"></span></p>
 
                         <!-- Enlace a detalle de cliente por nombre -->
+
                         <p>
                             <strong>Nombre Cliente:</strong>
                             <a th:href="@{/clientes/detalles/{id}(id=${pedidos.id_cliente})}">
