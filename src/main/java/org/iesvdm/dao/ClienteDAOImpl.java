@@ -146,8 +146,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 WHERE cliente.id= ? 
                 """;
 
-        int cantidad = jdbcTemplate.queryForObject(query, Integer.class , id);
-
+        Integer cantidad = jdbcTemplate.queryForObject(query, Integer.class , id);
         return cantidad != null ? cantidad : 0;
     }
 
