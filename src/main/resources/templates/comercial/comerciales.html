@@ -41,19 +41,25 @@
         <span class="col text-center" th:text="${comercial.apellido1}">apellido1</span>
         <span class="col text-center" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</span>
         <span class="col text-center" th:text="${comercial.comision}">ciudad</span>
+
         <span class="col">
-        <div class="btn-group d-flex justify-content-around" role="group">
-        <form class="d-inline" th:action="@{/comercial/detalles/__${comercial.id}__}">
-                <button type="submit" class="btn btn-info btn-sm">Detalle</button>
-            </form>
-            <form class="d-inline" th:action="@{/comercial/editar/__${comercial.id}__}">
-                <button type="submit" class="btn btn-success btn-sm">Editar</button>
-            </form>
-            <form class="d-inline" th:action="@{/comercial/borrar/__${comercial.id}__}" method="post">
-                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-            </form>
-        </div>
-    </span>
+            <div class="btn-group d-flex justify-content-around" role="group">
+
+                <!-- Enlace a detalle-->
+                     <form class="d-inline" th:action="@{/comercial/detalles/__${comercial.id}__}">
+                        <button type="submit" class="btn btn-info btn-sm">Detalle</button>
+                    </form>
+
+                    <form class="d-inline" th:action="@{/comercial/editar/__${comercial.id}__}">
+                        <button type="submit" class="btn btn-success btn-sm">Editar</button>
+                    </form>
+
+                    <form class="d-inline" th:action="@{/comercial/borrar/__${comercial.id}__}" method="post">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+            </div>
+        </span>
+
     </div>
 
 

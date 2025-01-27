@@ -41,19 +41,25 @@
         <span class="col text-center" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</span>
         <span class="col text-center" th:text="${cliente.ciudad}">ciudad</span>
         <span class="col text-center" th:text="${cliente.categoria}">categoría</span>
+
+        <!-- Enlaces de acción -->
         <span class="col">
-        <div class="btn-group d-flex justify-content-around" role="group">
-        <form class="d-inline" th:action="@{/clientes/detalles/{id}(id=${cliente.id})}">
-                <button type="submit" class="btn btn-info btn-sm">Detalle</button>
-            </form>
-            <form class="d-inline" th:action="@{/clientes/editar/__${cliente.id}__}">
-                <button type="submit" class="btn btn-success btn-sm">Editar</button>
-            </form>
-            <form class="d-inline" th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
-                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-            </form>
-        </div>
-    </span>
+            <div class="btn-group d-flex justify-content-around" role="group">
+                     <!-- Enlace a Detalles de cliente -->
+                    <form class="d-inline" th:action="@{/clientes/detalles/{id}(id=${cliente.id})}">
+                        <button type="submit" class="btn btn-info btn-sm">Detalle</button>
+                    </form>
+
+                <form class="d-inline" th:action="@{/clientes/editar/__${cliente.id}__}">
+                    <button type="submit" class="btn btn-success btn-sm">Editar</button>
+                </form>
+
+                <form class="d-inline" th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+
+            </div>
+        </span>
     </div>
 
 
