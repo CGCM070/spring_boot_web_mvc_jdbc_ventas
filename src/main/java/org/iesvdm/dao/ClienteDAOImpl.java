@@ -137,6 +137,18 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     }
 
+    @Override
+    public void getCantidadPedido(int id) {
+
+
+        String query = """
+                SELECT COUNT (*) FROM cliente
+                JOIN pedidos.p ON cliente.id = p.id_cliente
+                WHERE cliente.id= ? 
+                """;
+
+        int cantidad = jdbcTemplate.queryForObject(query, Integer.class , id);
+    }
 
 
 }
