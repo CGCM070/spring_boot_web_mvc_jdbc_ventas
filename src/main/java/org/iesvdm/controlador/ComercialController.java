@@ -100,8 +100,15 @@ public class ComercialController {
         List<PedidoDTO> pedidoDTOList = pedidoService.commercialDetail(id);
         model.addAttribute("pedidoDTOList", pedidoDTOList);
 
+
         ComercialDTO comercialDTO = comercialService.totalAndMediaPedidos(id);
         model.addAttribute("comercialDTO", comercialDTO);
+
+
+
+
+
+
 
         PedidoDTO maxPedido = pedidoDTOList.stream().max(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
         PedidoDTO minPedido = pedidoDTOList.stream().min(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);

@@ -141,8 +141,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     public int getCantidadPedido(int id) {
 
         String query = """
-                SELECT COUNT (*) FROM cliente
-                JOIN pedidos.p ON cliente.id = p.id_cliente
+                SELECT COUNT (*) FROM pedido
                 WHERE cliente.id= ? 
                 """;
 
