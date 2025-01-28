@@ -141,13 +141,14 @@ public class ClienteDAOImpl implements ClienteDAO {
     public int getCantidadPedido(int id) {
 
         String query = """
-                SELECT COUNT (*) FROM pedido
-                WHERE cliente.id= ? 
-                """;
+            SELECT COUNT(*) FROM pedido
+            WHERE id_cliente = ?
+            """;
 
-        Integer cantidad = jdbcTemplate.queryForObject(query, Integer.class , id);
+        Integer cantidad = jdbcTemplate.queryForObject(query, Integer.class, id);
         return cantidad != null ? cantidad : 0;
     }
+
 
 
 }

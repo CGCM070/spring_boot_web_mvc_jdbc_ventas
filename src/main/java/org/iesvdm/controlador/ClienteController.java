@@ -1,8 +1,10 @@
 package org.iesvdm.controlador;
 
 import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.service.ClienteService;
+import org.iesvdm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,10 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
+
+    @Autowired
+    private PedidoService pedidoService;
 
 
     @GetMapping("/clientes")
@@ -62,6 +68,12 @@ public class ClienteController {
         }else {
             model.addAttribute("error", "Cliente no econtrado");
         }
+        int cantidadPedido = clienteService.cantidadPedidos(id);
+        model.addAttribute("cantidadPedido", cantidadPedido);
+
+        List<ComercialDTO> listaConteoComercial = pedidoService.getComercialesYConteoDePedidos(id);
+        model.addAttribute("listaConteoComercial", listaConteoComercial);
+
         return "/clientes/detalle-clientes";
     }
 

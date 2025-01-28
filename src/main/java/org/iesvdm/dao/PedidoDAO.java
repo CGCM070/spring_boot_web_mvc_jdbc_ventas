@@ -1,5 +1,6 @@
 package org.iesvdm.dao;
 
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Pedido;
 
@@ -29,5 +30,9 @@ public interface PedidoDAO {
 
      // mapea solo ciertos campos para la vista de clientes detalles (vista Comercial )
      List<PedidoDTO> getPedidoDTOforComercialDetail (int id_comercial);
+
+
+     //vista cliente detalle
+     List<ComercialDTO> getComercialesYConteoDePedidos(int id_cliente);
 
 }

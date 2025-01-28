@@ -1,6 +1,7 @@
 package org.iesvdm.service;
 
 import org.iesvdm.dao.PedidoDAO;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,10 @@ public class PedidoService {
 
     public List<PedidoDTO> commercialDetail (int id){
         return pedidoDAO.getPedidoDTOforComercialDetail(id);
+    }
+
+
+    public List<ComercialDTO> getComercialesYConteoDePedidos (int id){
+        return pedidoDAO.getComercialesYConteoDePedidos(id);
     }
 }

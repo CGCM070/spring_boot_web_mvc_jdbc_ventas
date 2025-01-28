@@ -1,6 +1,7 @@
 package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,23 +163,25 @@ public class PedidoDAOImpl implements PedidoDAO {
     //PARA MI DTO , SOLO CIERTOS VALORES
     @Override
     public List<PedidoDTO> getPedidoByClienteId(int id_cliente) {
+        String sql = """
+        SELECT p.id,
+               p.total,
+               p.fecha,
+               p.id_cliente,
+               p.id_comercial,
+               c.nombre AS nombre_comercial
+        FROM pedido p
+        JOIN comercial c ON p.id_comercial = c.id
+        WHERE p.id_cliente = ?""";
 
-        List<PedidoDTO> listPedidoDTO = jdbcTemplate.query(
-                "SELECT * FROM pedido WHERE id_cliente = ?",
-                (rs, rowNum) -> PedidoDTO.builder()
-                        .id(rs.getInt("id"))
-                        .total(rs.getDouble("total"))
-                        .fecha(rs.getDate("fecha"))
-                        .id_cliente(rs.getInt("id_cliente"))
-                        .id_comercial(rs.getInt("id_comercial"))
-                        .build(), // nombre_comercial predeterminado pq no hago join para recuperarlo
-                id_cliente
-        );
+        List<PedidoDTO> listPedidoDTO = jdbcTemplate.query(sql,
+                new BeanPropertyRowMapper<>(PedidoDTO.class), id_cliente);
+
         log.info("Devueltos {} registros para el cliente con id {}.", listPedidoDTO.size(), id_cliente);
 
         return listPedidoDTO;
-
     }
+
 
     // Datos para la vista de comercial(detalles comercial)
     @Override
@@ -200,6 +203,23 @@ public class PedidoDAOImpl implements PedidoDAO {
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(PedidoDTO.class), id_comercial);
     }
 
+    @Override
+    public List<ComercialDTO> getComercialesYConteoDePedidos(int id_cliente) {
+
+        String query = """
+                SELECT 
+                    c.id AS comercial_id,
+                    c.nombre AS nombre_comercial,
+                    COUNT(p.id)  AS total_pedido
+                FROM comercial c
+                JOIN pedido p ON c.id= p.id_comercial
+                WHERE p.id_cliente = ?
+                GROUP BY c.id, c.nombre
+   
+                """;
+
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(ComercialDTO.class), id_cliente);
+    }
 
 
 }

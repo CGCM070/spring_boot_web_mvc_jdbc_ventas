@@ -17,7 +17,7 @@
     <div class="row mb-4">
 
         <div class="col-10 d-flex align-items-center">
-            <h1 th:text="'Detalles de ' + ${clienteDetalle.nombre}" class="display-4"></h1>
+            <h1 th:text="'Detalles del cliente ' + ${clienteDetalle.nombre}" class="display-4"></h1>
         </div>
 
         <div class="col-2 d-flex align-items-center">
@@ -47,17 +47,48 @@
             </div>
         </div>
 
-                    <!-- Bloque Cantidad -->
-            <!--        <div class="col-md-4 mb-4">-->
-            <!--            <div class="card">-->
-            <!--                <div class="card-body">-->
-            <!--                    <p><strong>Cantidad Pedido:</strong> <span th:text="${clienteDetalle.cantidadPedido}"></span></p>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
+        <!--Bloque Cantidad-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <p><strong>Cantidad Pedido:</strong> <span th:text="${cantidadPedido}"></span></p>
+                </div>
+            </div>
+        </div>
 
     </div>
 
+    <!--    Bloque de Conteo de pedidos por comercial-->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>Conteo de pedidos por comercial</h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <ul class="list-group col-12">
+            <li th:each="comercialDTO : ${listaConteoComercial}" class="list-group-item mb-4 card-shadow p-3">
+
+                <div class="col-md-4">
+                    <p><strong>ID Comercial :</strong> <span th:text="${comercialDTO.comercial_id}"></span></p>
+                </div>
+
+                <div class="col-md-4">
+                    <p><strong>Comercial :</strong> <span th:text="${comercialDTO.nombre_comercial}"></span></p>
+                </div>
+
+                <div class="col-md-4">
+                    <p><strong>Pedidos :</strong> <span th:text="${comercialDTO.total_pedido}"></span></p>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+
+
+<!--    Aqui viene el bloque de pedidos-->
     <div class="row mt-4">
         <div class="col-12">
             <h2>Pedidos:</h2>
@@ -82,6 +113,15 @@
                 </div>
 
 
+                <!-- Enlace a detalle de comercial por nombre -->
+                <p class="col-md-4">
+                    <strong>Comercial:</strong>
+                    <a th:href="@{/comercial/detalles/{id}(id=${pedidoDTO.id_comercial})}">
+                        <span th:text="${pedidoDTO.nombre_comercial}"></span>
+                    </a>
+                </p>
+
+
                 <div class="col-md-4">
                     <p><strong>Fecha:</strong> <span th:text="${pedidoDTO.fecha}"></span></p>
                 </div>
@@ -94,7 +134,23 @@
         </ul>
     </div>
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

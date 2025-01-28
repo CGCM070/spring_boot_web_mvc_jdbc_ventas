@@ -91,5 +91,8 @@ public class ClienteService {
 
 
 
+	public int cantidadPedidos (int id){
+		return clienteDAO.getCantidadPedido(id) ;
+	}
 
 }

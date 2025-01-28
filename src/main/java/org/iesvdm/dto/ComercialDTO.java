@@ -11,8 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ComercialDTO {
 
+    int comercial_id;
+
     @Builder.Default
     Integer  total_pedido =0;
+
+    String nombre_comercial;
 
     @Builder.Default
     Double media_pedido =0.0;
