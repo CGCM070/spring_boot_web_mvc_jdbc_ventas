@@ -25,4 +25,12 @@ public class PedidoDTO {
 
     @Builder.Default
     private String nombre_comercial = "";
+
+
+    // para el tema de las fechas
+    int trimestre;
+    int semestre;
+    int year;
+    int lustro;
+
 }

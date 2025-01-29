@@ -85,11 +85,47 @@
 
             </li>
         </ul>
+
+    </div>
+
+    <!--    Bloque de Conteo de pedidos por fechas-->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2>Resumen Comercial x Fechas</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <ul class="list-group col-6">
+            <li th:each="pedidoDTO : ${listaPedidoPorFechas}" class="list-group-item mb-4 card-shadow p-3">
+
+                <div class="col-md-6">
+                    <p><strong>Comercial :</strong> <span th:text="${pedidoDTO.nombre_comercial}"></span></p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Último Semestre :</strong> <span th:text="${pedidoDTO.semestre}"></span></p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>último Trimetre :</strong> <span th:text="${pedidoDTO.trimestre}"></span></p>
+                </div>
+
+
+                <div class="col-md-6">
+                    <p><strong>Último año :</strong> <span th:text="${pedidoDTO.year}"></span></p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Lustro:</strong> <span th:text="${pedidoDTO.lustro}"></span></p>
+                </div>
+            </li>
+        </ul>
+
     </div>
 
 
-
-<!--    Aqui viene el bloque de pedidos-->
+    <!--    Aqui viene el bloque de pedidos-->
     <div class="row mt-4">
         <div class="col-12">
             <h2>Pedidos:</h2>
@@ -134,21 +170,6 @@
             </li>
         </ul>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </div>

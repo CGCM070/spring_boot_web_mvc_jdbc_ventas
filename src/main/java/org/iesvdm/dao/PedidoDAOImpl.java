@@ -222,14 +222,14 @@ public class PedidoDAOImpl implements PedidoDAO {
     }
 
 
-    //
+    // para el tema de las fechas
     @Override
     public List<PedidoDTO> pedidoPorFechasComerciales(int id_cliente) {
 
         String  query = """
                 SELECT
-                    p.fecha AS fecha_pedido,
-                    p.total AS total_pedido,
+                    p.fecha AS fecha,
+                    p.total AS total,
                     c.nombre AS nombre_comercial
                 FROM
                     pedido p

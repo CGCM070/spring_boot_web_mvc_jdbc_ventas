@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
+import org.iesvdm.dto.PedidoDTO;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.service.ClienteService;
 import org.iesvdm.service.PedidoService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,6 +76,9 @@ public class ClienteController {
 
         List<ComercialDTO> listaConteoComercial = pedidoService.getComercialesYConteoDePedidos(id);
         model.addAttribute("listaConteoComercial", listaConteoComercial);
+
+        List<PedidoDTO> listaPedidoPorFechas = pedidoService.resumenComercialPedidoFechas(id);
+        model.addAttribute("listaPedidoPorFechas", listaPedidoPorFechas);
 
         return "/clientes/detalle-clientes";
     }
