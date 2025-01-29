@@ -222,9 +222,25 @@ public class PedidoDAOImpl implements PedidoDAO {
     }
 
 
+    //
+    @Override
+    public List<PedidoDTO> pedidoPorFechasComerciales(int id_cliente) {
 
-
-
+        String  query = """
+                SELECT
+                    p.fecha AS fecha_pedido,
+                    p.total AS total_pedido,
+                    c.nombre AS nombre_comercial
+                FROM
+                    pedido p
+                        JOIN
+                    comercial c ON p.id_comercial = c.id
+                WHERE
+                    p.id_cliente = ?;
+           
+                """;
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(PedidoDTO.class), id_cliente);
+    }
 
 
 }

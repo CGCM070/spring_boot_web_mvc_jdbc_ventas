@@ -35,4 +35,9 @@ public interface PedidoDAO {
      //vista cliente detalle
      List<ComercialDTO> getComercialesYConteoDePedidos(int id_cliente);
 
+
+     // vista cliente detalle ( pedidos pro fechas de comerciales )
+
+     List<PedidoDTO> pedidoPorFechasComerciales(int id_cliente);
+
 }
