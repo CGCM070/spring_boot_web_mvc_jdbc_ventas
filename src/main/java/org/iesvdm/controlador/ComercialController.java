@@ -106,10 +106,6 @@ public class ComercialController {
 
 
 
-
-
-
-
         PedidoDTO maxPedido = pedidoDTOList.stream().max(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
         PedidoDTO minPedido = pedidoDTOList.stream().min(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
 

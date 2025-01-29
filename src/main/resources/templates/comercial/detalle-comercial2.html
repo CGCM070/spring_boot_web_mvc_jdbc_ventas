@@ -132,7 +132,6 @@
                         <p><strong>ID Cliente:</strong> <span th:text="${pedidos.id_cliente}"></span></p>
 
                         <!-- Enlace a detalle de cliente por nombre -->
-
                         <p>
                             <strong>Nombre Cliente:</strong>
                             <a th:href="@{/clientes/detalles/{id}(id=${pedidos.id_cliente})}">

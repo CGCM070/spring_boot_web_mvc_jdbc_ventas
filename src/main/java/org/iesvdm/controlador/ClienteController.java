@@ -68,6 +68,7 @@ public class ClienteController {
         }else {
             model.addAttribute("error", "Cliente no econtrado");
         }
+
         int cantidadPedido = clienteService.cantidadPedidos(id);
         model.addAttribute("cantidadPedido", cantidadPedido);
 

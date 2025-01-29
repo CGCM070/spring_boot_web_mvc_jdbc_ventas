@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,7 @@ public class ComercialDTO {
 
     @Builder.Default
     Double media_pedido =0.0;
+
+    Date fecha_pedido;
+
 }
