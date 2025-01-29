@@ -47,23 +47,20 @@ public class PedidoService {
                 .filter(pedido -> pedido.getFecha().toLocalDate().isAfter(currentDate.minusYears(5)))
                 .count();
 
-        // Asignar estos valores a cada pedido
-        return pedidoDTOList.stream()
-                .map(pedidoDTO -> PedidoDTO.builder()
 
-                        .id(pedidoDTO.getId())
-                        .fecha(pedidoDTO.getFecha())
-                        .total(pedidoDTO.getTotal())
-                        .id_cliente(pedidoDTO.getId_cliente())
-                        .id_comercial(pedidoDTO.getId_comercial())
-                        .nombre_cliente(pedidoDTO.getNombre_cliente())
-                        .nombre_comercial(pedidoDTO.getNombre_comercial())
-                        .trimestre( (int) totalTrimestre)
-                        .semestre((int) totalSemestre)
-                        .year((int) totalYear)
-                        .lustro((int) totalLustro)
-                        .build())
-                .toList();
+
+        pedidoDTOList.forEach(p -> {
+            p.setTrimestre((int) totalTrimestre);
+            p.setSemestre((int) totalSemestre);
+            p.setYear((int) totalYear);
+            p.setLustro((int) totalLustro);
+        });
+
+        return pedidoDTOList;
+
+
+
+
     }
 
 
