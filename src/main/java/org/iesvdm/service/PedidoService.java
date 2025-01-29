@@ -47,8 +47,6 @@ public class PedidoService {
                 .filter(pedido -> pedido.getFecha().toLocalDate().isAfter(currentDate.minusYears(5)))
                 .count();
 
-
-
         pedidoDTOList.forEach(p -> {
             p.setTrimestre((int) totalTrimestre);
             p.setSemestre((int) totalSemestre);
@@ -57,9 +55,6 @@ public class PedidoService {
         });
 
         return pedidoDTOList;
-
-
-
 
     }
 
