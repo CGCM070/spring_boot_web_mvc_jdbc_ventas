@@ -28,7 +28,7 @@ class SpringBootWebMvcJdbcVentasApplicationTests {
             .nombre("comercial")
             .apellido1("apellido1")
             .apellido2("apellido2")
-            .comision(1231123)
+//            .comision(1231123)
             .build();
 
     @Test

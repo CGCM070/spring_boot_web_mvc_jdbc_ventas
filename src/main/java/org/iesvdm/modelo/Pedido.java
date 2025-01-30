@@ -12,6 +12,7 @@ import java.sql.Date;
 public class Pedido {
 
     private int id;
+
     private double total;
     private Date fecha;
     private int id_cliente;
