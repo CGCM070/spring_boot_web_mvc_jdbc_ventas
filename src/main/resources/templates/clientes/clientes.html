@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
 <body>
+
+<!-- Título y botones de página -->
 <div id="contenedora" class="container my-4">
     <div class="row align-items-center mb-4">
         <div class="col-md-8">
@@ -23,32 +25,38 @@
     </div>
 
     <hr/>
+
+    <!-- Cabecera de lista-->
     <div class="row">
         <span class="col-1"><strong>Id</strong></span>
-        <span class="col text-center"><strong>Nombre</strong></span>
-        <span class="col text-center"><strong>Apellido1</strong></span>
-        <span class="col text-center"><strong>Apellido2</strong></span>
-        <span class="col text-center"><strong>Ciudad</strong></span>
-        <span class="col text-center"><strong>Categoría</strong></span>
-        <span class="col"><strong>Acción</strong></span>
+        <span class="col-1 text-center"><strong>Nombre</strong></span>
+        <span class="col-1 text-center"><strong>Apellido1</strong></span>
+        <span class="col-1 text-center"><strong>Apellido2</strong></span>
+        <span class="col-1 text-center"><strong>Ciudad</strong></span>
+        <span class="col-1 text-center"><strong>Categoría</strong></span>
+        <span class="col-2 text-center"><strong>Email</strong></span>
+        <span class="col-3 text-right"><strong>Acción</strong></span>
     </div>
     <hr/>
 
+
+    <!-- Contenido de la Lista-->
     <div class="row" th:each="cliente : ${listaClientes}">
         <span class="col-1" th:text="${cliente.id}">0</span>
-        <span class="col text-center" th:text="${cliente.nombre}">nombre</span>
-        <span class="col text-center" th:text="${cliente.apellido1}">apellido1</span>
-        <span class="col text-center" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</span>
-        <span class="col text-center" th:text="${cliente.ciudad}">ciudad</span>
-        <span class="col text-center" th:text="${cliente.categoria}">categoría</span>
+        <span class="col-1 text-center" th:text="${cliente.nombre}">nombre</span>
+        <span class="col-1 text-center" th:text="${cliente.apellido1}">apellido1</span>
+        <span class="col-1 text-center" th:text="${cliente.apellido2 ?: '&nbsp;'}">apellido2</span>
+        <span class="col-1 text-center" th:text="${cliente.ciudad}">ciudad</span>
+        <span class="col-1 text-center" th:text="${cliente.categoria}">categoría</span>
+        <span class="col-2 text-center" th:text="${cliente.email}">email</span>
 
         <!-- Enlaces de acción -->
-        <span class="col">
-            <div class="btn-group d-flex justify-content-around" role="group">
-                     <!-- Enlace a Detalles de cliente -->
-                    <form class="d-inline" th:action="@{/clientes/detalles/{id}(id=${cliente.id})}">
-                        <button type="submit" class="btn btn-info btn-sm">Detalle</button>
-                    </form>
+        <span class="col text-right">
+            <div class="btn-group" role="group">
+                <!-- Enlace a Detalles de cliente -->
+                <form class="d-inline" th:action="@{/clientes/detalles/{id}(id=${cliente.id})}">
+                    <button type="submit" class="btn btn-info btn-sm">Detalle</button>
+                </form>
 
                 <form class="d-inline" th:action="@{/clientes/editar/__${cliente.id}__}">
                     <button type="submit" class="btn btn-success btn-sm">Editar</button>
@@ -57,7 +65,6 @@
                 <form class="d-inline" th:action="@{/clientes/borrar/__${cliente.id}__}" method="post">
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 </form>
-
             </div>
         </span>
     </div>
@@ -65,8 +72,13 @@
 
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+

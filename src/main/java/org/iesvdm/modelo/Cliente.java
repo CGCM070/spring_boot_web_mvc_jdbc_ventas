@@ -1,9 +1,6 @@
 package org.iesvdm.modelo;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +35,9 @@ public class Cliente {
 	@Min(value = 1000, message = "{error.tamano.min}")
 	@Max(value = 10000, message = "{error.tamano.max}")
 	private int categoria;
+
+	@NotBlank(message = "{error.email}")
+	@Email(message = "{error.email.regexp}")
+	private String email;
 	
 }

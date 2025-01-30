@@ -71,6 +71,17 @@
         </div>
 
 
+        <div class="form-group">
+            <label >Email:</label>
+            <input type="text" id="email" th:field="*{email}" class="form-control"/>
+
+            <ul th:if="${#fields.hasErrors('email')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
+        </div>
+
+
 <!--        Select con opciones de algo-->
         <!--        <div class="form-group">-->
         <!--            <label for="idFabricante">Fabricante:</label>-->
