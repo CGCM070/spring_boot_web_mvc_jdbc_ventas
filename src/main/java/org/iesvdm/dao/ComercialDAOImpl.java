@@ -28,7 +28,7 @@ public class ComercialDAOImpl implements ComercialDAO {
     public void create(Comercial comercial) {
 
         String sqlInsert = """
-                INSERT INTO comercial (nombre, apellido1, apellido2, comisión)
+                INSERT INTO comercial (nombre, apellido1, apellido2, comision)
                 VALUES (?,?,?,?) """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -85,7 +85,7 @@ public class ComercialDAOImpl implements ComercialDAO {
                         				nombre = ?, 
                         				apellido1 = ?, 
                         				apellido2 = ?,
-                        				comisión = ? 
+                        				comision = ? 
                         		WHERE id = ?
                         """
                 , comercial.getNombre()
