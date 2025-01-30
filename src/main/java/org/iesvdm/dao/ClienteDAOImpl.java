@@ -63,22 +63,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Cliente.class));
 
-//        List<Cliente> listFab = jdbcTemplate.query(
-//                "SELECT * FROM cliente",
-//                (rs, rowNum) -> new Cliente(rs.getInt("id"),
-//                        rs.getString("nombre"),
-//                        rs.getString("apellido1"),
-//                        rs.getString("apellido2"),
-//                        rs.getString("ciudad"),
-//                        rs.getInt("categoría"),
-//                        rs.getString("email")
-//                )
-//        );
-//
-//        log.info("Devueltos {} registros.", listFab.size());
-//
-//        return listFab;
-
     }
 
     /**
