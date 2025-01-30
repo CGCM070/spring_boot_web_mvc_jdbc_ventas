@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<!-- Título y botones de página -->
+<div id="contenedora" class="container my-4">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1>Pedidos</h1>
+        </div>
+
+        <div class="col-md-4 d-flex justify-content-end">
+            <form action="/pedidos/crear" class="mr-2">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+            <form action="/">
+                <button type="submit" class="btn btn-primary">Volver</button>
+            </form>
+        </div>
+    </div>
+
+    <hr/>
+
+    <!-- Cabecera de lista-->
+    <div class="row">
+        <span class="col-1"><strong>Id</strong></span>
+        <span class="col-2 text-center"><strong>Total</strong></span>
+        <span class="col-2 text-center"><strong>fecha</strong></span>
+        <span class="col-2 text-center"><strong>id_cliente</strong></span>
+        <span class="col-2 text-center"><strong>id_comercial</strong></span>
+        <span class="col-2 text-right"><strong>Acción</strong></span>
+    </div>
+    <hr/>
+
+
+    <!-- Contenido de la Lista-->
+    <div class="row" th:each="pedido : ${pedidoList}">
+        <span class="col-1" th:text="${pedido.id}">0</span>
+        <span class="col-2 text-center" th:text="${pedido.total}">total</span>
+        <span class=" col-2 text-center date" th:text="${pedido.fecha}">fecha</span>
+        <span class="col-2 text-center" th:text="${pedido.id_cliente}">id_cliente</span>
+        <span class="col-2 text-center" th:text="${pedido.id_comercial}">id_comercial</span>
+
+        <!-- Enlaces de acción -->
+        <span class="col text-right">
+            <div class="btn-group" role="group">
+                <!-- Enlace a Detalles de cliente -->
+                <form class="d-inline" th:action="@{/pedidos/detalles/{id}(id=${pedido.id})}">
+                    <button type="submit" class="btn btn-info btn-sm">Detalle</button>
+                </form>
+
+                <form class="d-inline" th:action="@{/clientes/editar/__${pedido.id}__}">
+                    <button type="submit" class="btn btn-success btn-sm">Editar</button>
+                </form>
+
+                <form class="d-inline" th:action="@{/clientes/borrar/__${pedido.id}__}" method="post">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </div>
+        </span>
+    </div>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+

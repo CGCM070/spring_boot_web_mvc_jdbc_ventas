@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Pedidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+
+
+    <form th:action="@{/pedidos/crear}" th:object="${pedido}" method="post">
+
+        <div class="row py-4 border-bottom">
+            <div class="col-md-10">
+                <h1 class="display-4">Crear Pedido</h1>
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">Total:</label>
+            <input type="number" id="nombre" th:field="*{total}" class="form-control" />
+
+            <ul th:if="${#fields.hasErrors('total')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('total')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
+
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="apellido1">Fecha:</label>
+            <input type="date" id="apellido1" th:field="*{fecha}" class="form-control"  />
+
+            <ul th:if="${#fields.hasErrors('fecha')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('fecha')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
+        </div>
+
+
+        <!-- Select de Cliente a selecionar  -->
+        <div class="form-group">
+            <label for="id_cliente">Cliente:</label>
+            <select id="id_cliente" th:field="*{id_cliente}" class="form-control">
+                <option th:each="cliente : ${clienteList}"
+                        th:value="${cliente.id}"
+                        th:text="${cliente.nombre + ' ' + cliente.apellido1}">
+
+                </option>
+            </select>
+        </div>
+
+
+
+        <!-- Select de Comercial a selecionar  -->
+                <div class="form-group">
+                    <label for="id_comercial">Comercial:</label>
+                    <select id="id_comercial" th:field="*{id_comercial}" class="form-control">
+                        <option th:each="comercial : ${comercialList}"
+                                th:value="${comercial.id}"
+                                th:text="${comercial.nombre + ' ' + comercial.apellido1}">
+
+                        </option>
+                    </select>
+                </div>
+
+    </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
