@@ -13,11 +13,11 @@ import java.sql.Date;
 @Builder
 public class PedidoDTO {
 
-    private int id;
-    private double total;
+    private Integer id;
+    private Double total;
     private Date fecha;
-    private int id_cliente;
-    private int id_comercial;
+    private Integer id_cliente;
+    private Integer id_comercial;
 
      //pq para algunos casos lo usare y en otras no, así solo las mapeo en las query las que necesite
     @Builder.Default
@@ -28,9 +28,9 @@ public class PedidoDTO {
 
 
     // para el tema de las fechas
-    int trimestre;
-    int semestre;
-    int year;
-    int lustro;
+    Integer trimestre;
+    Integer semestre;
+    Integer year;
+    Integer lustro;
 
 }

@@ -51,16 +51,9 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public List<Pedido> getAll() {
 
-        List<Pedido> listPedido = jdbcTemplate.query(
-                "SELECT * FROM pedido",
-                (rs, rowNum) -> new Pedido(
-                        rs.getInt("id"),
-                        rs.getDouble("total"),
-                        rs.getDate("fecha"),
-                        rs.getInt("id_cliente"),
-                        rs.getInt("id_comercial"))
+        String query = " SELECT * FROM pedido";
 
-        );
+        List<Pedido> listPedido = jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Pedido.class));
 
         log.info("Devueltos {} registros.", listPedido.size());
 
@@ -72,20 +65,14 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public Optional<Pedido> find(int id) {
 
-        Pedido pedido = jdbcTemplate
-                .queryForObject("SELECT * FROM pedido WHERE id = ?"
-                        , (rs, rowNum) ->
+        String query = "SELECT * FROM pedido WHERE id = ?";
 
-                                new Pedido(rs.getInt("id"),
-                                        rs.getDouble("total"),
-                                        rs.getDate("fecha"),
-                                        rs.getInt("id_cliente"),
-                                        rs.getInt("id_comercial"))
-                        , id
-                );
+        var pedido = Optional.ofNullable(
+                jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Pedido.class), id)
+        );
 
         if (pedido != null) {
-            return Optional.of(pedido);
+            return pedido;
         } else {
             log.info("Pedido no encontrado.");
             return Optional.empty();
@@ -127,18 +114,9 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public List<Pedido> getAllPedidoByCliId(int id_cliente) {
 
-        List<Pedido> listPedido = jdbcTemplate.query("SELECT * FROM pedido WHERE id_cliente = ? ",
-                (rs, rowNum) ->
-                        new Pedido(
-                                rs.getInt("id"),
-                                rs.getDouble("total"),
-                                rs.getDate("fecha"),
-                                rs.getInt("id_cliente"),
-                                rs.getInt("id_comercial")
-                        ), id_cliente
-        );
+        String query = "SELECT * FROM pedido WHERE id_cliente = ? ";
 
-        return listPedido;
+        return  jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Pedido.class), id_cliente);
 
     }
 
@@ -146,17 +124,9 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public List<Pedido> getAllByComId(int id_comercial) {
 
-        List<Pedido> listaPedidoCom = jdbcTemplate.query("SELECT * FROM pedido WHERE id_comercial = ? ",
-                (rs, rowNum) ->
-                        new Pedido(
-                                rs.getInt("id"),
-                                rs.getDouble("total"),
-                                rs.getDate("fecha"),
-                                rs.getInt("id_cliente"),
-                                rs.getInt("id_comercial")
-                        ), id_comercial
-        );
-        return listaPedidoCom;
+        String query ="SELECT * FROM pedido WHERE id_comercial = ? ";
+
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Pedido.class), id_comercial);
     }
 
 
@@ -164,15 +134,15 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public List<PedidoDTO> getPedidoByClienteId(int id_cliente) {
         String sql = """
-        SELECT p.id,
-               p.total,
-               p.fecha,
-               p.id_cliente,
-               p.id_comercial,
-               c.nombre AS nombre_comercial
-        FROM pedido p
-        JOIN comercial c ON p.id_comercial = c.id
-        WHERE p.id_cliente = ?""";
+                SELECT p.id,
+                       p.total,
+                       p.fecha,
+                       p.id_cliente,
+                       p.id_comercial,
+                       c.nombre AS nombre_comercial
+                FROM pedido p
+                JOIN comercial c ON p.id_comercial = c.id
+                WHERE p.id_cliente = ?""";
 
         List<PedidoDTO> listPedidoDTO = jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper<>(PedidoDTO.class), id_cliente);
@@ -215,7 +185,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                 JOIN pedido p ON c.id= p.id_comercial
                 WHERE p.id_cliente = ?
                 GROUP BY c.id, c.nombre
-   
+                
                 """;
 
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(ComercialDTO.class), id_cliente);
@@ -226,7 +196,7 @@ public class PedidoDAOImpl implements PedidoDAO {
     @Override
     public List<PedidoDTO> pedidoPorFechasComerciales(int id_cliente) {
 
-        String  query = """
+        String query = """
                 SELECT
                     p.fecha AS fecha,
                     p.total AS total,
@@ -237,7 +207,7 @@ public class PedidoDAOImpl implements PedidoDAO {
                     comercial c ON p.id_comercial = c.id
                 WHERE
                     p.id_cliente = ?;
-           
+                
                 """;
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(PedidoDTO.class), id_cliente);
     }

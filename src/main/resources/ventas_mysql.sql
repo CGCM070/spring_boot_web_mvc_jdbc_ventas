@@ -8,7 +8,7 @@ CREATE TABLE cliente (
                          apellido1 VARCHAR(100) NOT NULL,
                          apellido2 VARCHAR(100),
                          ciudad VARCHAR(100),
-                         categoría INT UNSIGNED,
+                         categoria INT UNSIGNED,
                          email VARCHAR(100)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE comercial (
                            nombre VARCHAR(100) NOT NULL,
                            apellido1 VARCHAR(100) NOT NULL,
                            apellido2 VARCHAR(100),
-                           comisión FLOAT
+                           comision FLOAT
 );
 
 CREATE TABLE pedido (
@@ -29,6 +29,7 @@ CREATE TABLE pedido (
                         FOREIGN KEY (id_cliente) REFERENCES cliente(id),
                         FOREIGN KEY (id_comercial) REFERENCES comercial(id)
 );
+
 
 INSERT INTO cliente VALUES(1, 'Aarón', 'Rivero', 'Gómez', 'Almería', 100, 'aaron.rivero@gmail.com');
 INSERT INTO cliente VALUES(2, 'Adela', 'Salas', 'Díaz', 'Granada', 200, 'adela.salas@yahoo.com');

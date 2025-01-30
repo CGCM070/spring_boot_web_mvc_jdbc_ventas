@@ -13,7 +13,7 @@ import java.sql.Date;
 @Builder
 public class ComercialDTO {
 
-    int comercial_id;
+    Integer comercial_id;
 
     @Builder.Default
     Integer  total_pedido =0;

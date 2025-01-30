@@ -83,7 +83,6 @@
             <ul th:if="${#fields.hasErrors('email')}" class="mt-2 list-unstyled">
                 <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="alert alert-danger"/>
             </ul>
-
         </div>
 
     </form>

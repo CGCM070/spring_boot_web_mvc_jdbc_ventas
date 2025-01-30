@@ -34,7 +34,7 @@ public class Cliente {
 
 	@Min(value = 1000, message = "{error.tamano.min}")
 	@Max(value = 10000, message = "{error.tamano.max}")
-	private int categoria;
+	private Integer categoria;
 
 	@NotBlank(message = "{error.email}")
 	@Email(message = "{error.email.regexp}")

@@ -49,16 +49,9 @@ public class ComercialDAOImpl implements ComercialDAO {
 
     @Override
     public List<Comercial> getAll() {
+        String query = "SELECT * FROM comercial";
 
-        List<Comercial> listComercial = jdbcTemplate.query(
-                "SELECT * FROM comercial",
-                (rs, rowNum) -> new Comercial(rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido1"),
-                        rs.getString("apellido2"),
-                        rs.getBigDecimal("comisión"))
-
-        );
+        var listComercial = jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Comercial.class));
 
         log.info("Devueltos {} registros.", listComercial.size());
 
@@ -68,24 +61,9 @@ public class ComercialDAOImpl implements ComercialDAO {
     @Override
     public Optional<Comercial> find(int id) {
 
-        Comercial comercial = jdbcTemplate
-                .queryForObject("SELECT * FROM comercial WHERE id = ?"
-                        , (rs, rowNum) ->
+        String query = "SELECT * FROM comercial WHERE id = ? ";
 
-                                new Comercial(rs.getInt("id"),
-                                        rs.getString("nombre"),
-                                        rs.getString("apellido1"),
-                                        rs.getString("apellido2"),
-                                        rs.getBigDecimal("comisión"))
-                        , id
-                );
-
-        if (comercial != null) {
-            return Optional.of(comercial);
-        } else {
-            log.info("Comercial no encontrado.");
-            return Optional.empty();
-        }
+        return Optional.ofNullable(jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Comercial.class), id));
     }
 
     @Override
@@ -140,11 +118,7 @@ public class ComercialDAOImpl implements ComercialDAO {
     """;
 
         //  queryForObject para devolver un único objeto
-        return jdbcTemplate.queryForObject(
-                query,
-                new BeanPropertyRowMapper<>(ComercialDTO.class),
-                id
-        );
+        return jdbcTemplate.queryForObject( query, new BeanPropertyRowMapper<>(ComercialDTO.class), id);
     }
 
     @Override

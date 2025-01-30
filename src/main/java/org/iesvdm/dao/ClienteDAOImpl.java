@@ -1,9 +1,9 @@
 package org.iesvdm.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.modelo.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -59,21 +59,26 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public List<Cliente> getAll() {
 
-        List<Cliente> listFab = jdbcTemplate.query(
-                "SELECT * FROM cliente",
-                (rs, rowNum) -> new Cliente(rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido1"),
-                        rs.getString("apellido2"),
-                        rs.getString("ciudad"),
-                        rs.getInt("categoría"),
-                        rs.getString("email")
-                )
-        );
+        String query = "SELECT * FROM cliente";
 
-        log.info("Devueltos {} registros.", listFab.size());
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Cliente.class));
 
-        return listFab;
+//        List<Cliente> listFab = jdbcTemplate.query(
+//                "SELECT * FROM cliente",
+//                (rs, rowNum) -> new Cliente(rs.getInt("id"),
+//                        rs.getString("nombre"),
+//                        rs.getString("apellido1"),
+//                        rs.getString("apellido2"),
+//                        rs.getString("ciudad"),
+//                        rs.getInt("categoría"),
+//                        rs.getString("email")
+//                )
+//        );
+//
+//        log.info("Devueltos {} registros.", listFab.size());
+//
+//        return listFab;
+
     }
 
     /**
@@ -82,24 +87,8 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public Optional<Cliente> find(int id) {
 
-        Cliente  cliente = jdbcTemplate
-                .queryForObject("SELECT * FROM cliente WHERE id = ?"
-                        , (rs, rowNum) -> new Cliente(rs.getInt("id"),
-                                rs.getString("nombre"),
-                                rs.getString("apellido1"),
-                                rs.getString("apellido2"),
-                                rs.getString("ciudad"),
-                                rs.getInt("categoría"),
-                                rs.getString("email"))
-                        , id
-                );
-
-        if (cliente != null) {
-            return Optional.of(cliente);
-        } else {
-            log.info("Cliente no encontrado.");
-            return Optional.empty();
-        }
+        String query = "SELECT * FROM cliente WHERE id= ?";
+        return Optional.ofNullable(jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Cliente.class), id));
 
     }
 
@@ -115,13 +104,15 @@ public class ClienteDAOImpl implements ClienteDAO {
                         				apellido1 = ?, 
                         				apellido2 = ?,
                         				ciudad = ?,
-                        				categoría = ?  
+                        				categoría = ?,
+                        				email = ?
                         		WHERE id = ?
                         """, cliente.getNombre()
                 , cliente.getApellido1()
                 , cliente.getApellido2()
                 , cliente.getCiudad()
                 , cliente.getCategoria()
+                , cliente.getEmail()
                 , cliente.getId());
 
         log.info("Update de Cliente con {} registros actualizados.", rows);
@@ -144,14 +135,13 @@ public class ClienteDAOImpl implements ClienteDAO {
     public int getCantidadPedido(int id) {
 
         String query = """
-            SELECT COUNT(*) FROM pedido
-            WHERE id_cliente = ?
-            """;
+                SELECT COUNT(*) FROM pedido
+                WHERE id_cliente = ?
+                """;
 
         Integer cantidad = jdbcTemplate.queryForObject(query, Integer.class, id);
         return cantidad != null ? cantidad : 0;
     }
-
 
 
 }
