@@ -1,6 +1,7 @@
 package org.iesvdm.controlador;
 
 
+import jakarta.validation.Valid;
 import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.dto.PedidoDTO;
@@ -11,6 +12,7 @@ import org.iesvdm.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,11 +56,15 @@ public class ComercialController {
 
 
     @PostMapping("/comercial/crear")
-    public RedirectView submitCrear(@ModelAttribute("comercial") Comercial comercial) {
+    public String submitCrear(@Valid @ModelAttribute("comercial") Comercial comercial, BindingResult bindingResult) {
 
+
+        if (bindingResult.hasErrors()) {
+            return "comercial/crear-comercial";
+        }
         comercialService.newComercial(comercial);
 
-        return new RedirectView("/comercial");
+        return "redirect:/comercial";
 
     }
 
@@ -74,12 +80,15 @@ public class ComercialController {
     }
 
     @PostMapping("/comercial/editar/{id}")
-    public RedirectView editarSubmit(@ModelAttribute("comercial") Comercial comercial) {
+    public String editarSubmit(@Valid @ModelAttribute("comercial") Comercial comercial, BindingResult bindingResult) {
+
+
+        if (bindingResult.hasErrors()) {
+            return "comercial/editar-comercial";
+        }
 
         comercialService.replaceComercial(comercial);
-
-        return new RedirectView("/comercial");
-
+        return "redirect:/comercial";
     }
 
 
@@ -105,7 +114,6 @@ public class ComercialController {
         model.addAttribute("comercialDTO", comercialDTO);
 
 
-
         PedidoDTO maxPedido = pedidoDTOList.stream().max(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
         PedidoDTO minPedido = pedidoDTOList.stream().min(Comparator.comparingDouble(PedidoDTO::getTotal)).orElse(null);
 
@@ -113,7 +121,7 @@ public class ComercialController {
         model.addAttribute("minPedido", minPedido);
 
         List<ClienteDTO> listaClienteDto = comercialService.listaPorCuantia(id);
-        model.addAttribute("listaClienteDto",listaClienteDto);
+        model.addAttribute("listaClienteDto", listaClienteDto);
 
         return "/comercial/detalle-comercial2";
     }

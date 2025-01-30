@@ -28,16 +28,13 @@ public class Comercial {
 	@NotBlank(message = "{error.nombre}")
 	@Size(min=4, message = "{error.longitud.min}")
 	@Size(max=10, message = "{error.longitud.max}")
-
 	private String apellido1;
-	@NotBlank(message = "{error.nombre}")
-	@Size(min=4, message = "{error.longitud.min}")
-	@Size(max=10, message = "{error.longitud.max}")
 
-	private String apellido2;
 	@NotBlank(message = "{error.nombre}")
 	@Size(min=4, message = "{error.longitud.min}")
 	@Size(max=10, message = "{error.longitud.max}")
+	private String apellido2;
+
 
 	@DecimalMin(value = "0.276", message = "La comisión debe ser al menos 0.276")
 	@DecimalMax(value = "0.946", message = "La comisión no puede ser mayor que 0.946")

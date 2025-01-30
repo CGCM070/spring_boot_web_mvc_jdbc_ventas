@@ -22,22 +22,42 @@
 
         <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" />
+
+            <ul th:if="${#fields.hasErrors('nombre')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
         </div>
 
         <div class="form-group">
             <label for="apellido1">Apellido1:</label>
-            <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" required/>
+            <input type="text" id="apellido1" th:field="*{apellido1}" class="form-control" />
+
+            <ul th:if="${#fields.hasErrors('apellido1')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
         </div>
 
         <div class="form-group">
             <label for="apellido2">Apellido2:</label>
-            <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" required/>
+            <input type="text" id="apellido2" th:field="*{apellido2}" class="form-control" />
+
+            <ul th:if="${#fields.hasErrors('apellido2')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('apellido2')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
         </div>
 
         <div class="form-group">
             <label >Comisión:</label>
-            <input type="number" id="ciudad" th:field="*{comision}" class="form-control" required/>
+            <input type="number"  step="0.001"   id="comision" th:field="*{comision}" class="form-control" />
+
+            <ul th:if="${#fields.hasErrors('comision')}" class="mt-2 list-unstyled">
+                <li th:each="err : ${#fields.errors('comision')}" th:text="${err}" class="alert alert-danger"/>
+            </ul>
+
         </div>
 
         <!--        <div class="form-group">-->
